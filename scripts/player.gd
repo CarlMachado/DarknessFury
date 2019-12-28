@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
-var SPEED = 200
-
-
+const SPEED = 200
 
 func _ready():
 	pass
