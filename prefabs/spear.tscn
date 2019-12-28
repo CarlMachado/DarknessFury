@@ -19,7 +19,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="spear" type="Area2D"]
+[node name="spear" type="StaticBody2D"]
 
 [node name="col_shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
