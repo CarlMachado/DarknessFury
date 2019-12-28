@@ -22,7 +22,6 @@ rotation = 0.811578
 position = Vector2( 288, 160 )
 
 [node name="enemy_spawns" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="spawn_enemy0" parent="enemy_spawns" instance=ExtResource( 5 )]
 position = Vector2( 34, 30 )
