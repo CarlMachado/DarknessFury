@@ -18,6 +18,9 @@ position = Vector2( 288, 160 )
 
 [node name="enemy_spawns" type="Node" parent="."]
 
+[node name="spawn_enemy0" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 26, 326 )
+
 [node name="spawn_enemy1" parent="enemy_spawns" instance=ExtResource( 4 )]
 position = Vector2( 34, 30 )
 
@@ -41,8 +44,3 @@ position = Vector2( 714, 676 )
 
 [node name="spawn_enemy8" parent="enemy_spawns" instance=ExtResource( 4 )]
 position = Vector2( 270, 674 )
-
-[node name="spawn_enemy9" parent="enemy_spawns" instance=ExtResource( 4 )]
-position = Vector2( 26, 326 )
-
-[node name="mouse_cross" parent="." instance=ExtResource( 5 )]

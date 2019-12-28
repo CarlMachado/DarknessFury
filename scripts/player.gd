@@ -3,6 +3,7 @@ extends KinematicBody2D
 const SPEED = 200
 
 func _ready():
+	add_to_group("player")
 	pass
 
 func _process(delta):

@@ -1,12 +1,12 @@
 extends Node2D
 
-var pre_enemy = preload("res://prefabs/enemy.tscn")
 var enemy = []
-var cooldown = [5, 6, 7, 5, 7, 6, 4, 5, 7]
 
 func _ready():
 	# da start nos timers
-#	$enemy_spawns/spawn_enemy/timer_spawn.start(rand_range(4, 7))
+	for i in range(9):
+		var spawn_en = 'enemy_spawns/spawn_enemy' + str(i) + '/timer_spawn'
+		get_node(spawn_en).start(1)
 	
 #	$enemy_spawns/spawn_up_left/timer_ul.start(cooldown[0])
 #	$enemy_spawns/spawn_up_right/timer_ur.start(cooldown[1])
@@ -49,6 +49,7 @@ func _ready():
 	pass
 
 func _process(delta):
+	pass
 	# faz os inimigos mirarem o player
 #	enemy[0].look_at($player.global_position)
 #	enemy[1].look_at($player.global_position)
@@ -59,14 +60,14 @@ func _process(delta):
 #	enemy[6].look_at($player.global_position)
 #	enemy[7].look_at($player.global_position)
 #	enemy[8].look_at($player.global_position)
-	pass
 
 # sinais
 func _on_timer_ul_timeout():
 	# se o inimigo estiver morto ele renasce 
+	pass
+  
 #	if not enemy[0].alive:
 #		$"../".remove_child(enemy[0])
 #		enemy[0] = pre_enemy.instance()
 #		enemy[0].global_position = $enemy_spawns/spawn_up_left.global_position
 #		$"../".add_child(enemy[0])
-	pass
