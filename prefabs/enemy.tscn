@@ -45,9 +45,5 @@ collision_layer = 0
 
 [node name="shape" type="CollisionShape2D" parent="sensor"]
 shape = SubResource( 2 )
-
-[node name="dead" type="Timer" parent="."]
-autostart = true
 [connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
 [connection signal="body_exited" from="sensor" to="." method="_on_sensor_body_exited"]
-[connection signal="timeout" from="dead" to="." method="_on_dead_timeout"]
