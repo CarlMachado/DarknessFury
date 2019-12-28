@@ -53,26 +53,26 @@ margin_right = 600.0
 margin_bottom = 312.0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="menu_content/margin_container/v_box_container"]
+[node name="game_tittle" type="Label" parent="menu_content/margin_container/v_box_container"]
 margin_right = 560.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 3 )
 text = "Darkness Fury"
 
-[node name="MarginContainer" type="MarginContainer" parent="menu_content/margin_container/v_box_container"]
+[node name="margin_container" type="MarginContainer" parent="menu_content/margin_container/v_box_container"]
 margin_top = 35.0
 margin_right = 560.0
 margin_bottom = 272.0
 custom_constants/margin_right = 400
 custom_constants/margin_top = 130
 
-[node name="v_box_container" type="VBoxContainer" parent="menu_content/margin_container/v_box_container/MarginContainer"]
+[node name="v_box_container" type="VBoxContainer" parent="menu_content/margin_container/v_box_container/margin_container"]
 margin_top = 130.0
 margin_right = 160.0
 margin_bottom = 237.0
 custom_constants/separation = 10
 
-[node name="btn_jogar" type="Button" parent="menu_content/margin_container/v_box_container/MarginContainer/v_box_container"]
+[node name="btn_jogar" type="Button" parent="menu_content/margin_container/v_box_container/margin_container/v_box_container"]
 margin_right = 160.0
 margin_bottom = 29.0
 custom_styles/hover = ExtResource( 4 )
@@ -83,7 +83,7 @@ custom_styles/normal = ExtResource( 5 )
 custom_fonts/font = ExtResource( 6 )
 text = "Jogar"
 
-[node name="btn_opções" type="Button" parent="menu_content/margin_container/v_box_container/MarginContainer/v_box_container"]
+[node name="btn_opções" type="Button" parent="menu_content/margin_container/v_box_container/margin_container/v_box_container"]
 margin_top = 39.0
 margin_right = 160.0
 margin_bottom = 68.0
@@ -95,7 +95,7 @@ custom_styles/normal = ExtResource( 5 )
 custom_fonts/font = ExtResource( 6 )
 text = "Opções"
 
-[node name="btn_sair" type="Button" parent="menu_content/margin_container/v_box_container/MarginContainer/v_box_container"]
+[node name="btn_sair" type="Button" parent="menu_content/margin_container/v_box_container/margin_container/v_box_container"]
 margin_top = 78.0
 margin_right = 160.0
 margin_bottom = 107.0
@@ -106,5 +106,5 @@ custom_styles/disabled = SubResource( 9 )
 custom_styles/normal = ExtResource( 5 )
 custom_fonts/font = ExtResource( 6 )
 text = "Sair"
-[connection signal="pressed" from="menu_content/margin_container/v_box_container/MarginContainer/v_box_container/btn_jogar" to="." method="_on_jogar_pressed"]
-[connection signal="pressed" from="menu_content/margin_container/v_box_container/MarginContainer/v_box_container/btn_sair" to="." method="_on_btn_sair_pressed"]
+[connection signal="pressed" from="menu_content/margin_container/v_box_container/margin_container/v_box_container/btn_jogar" to="." method="_on_jogar_pressed"]
+[connection signal="pressed" from="menu_content/margin_container/v_box_container/margin_container/v_box_container/btn_sair" to="." method="_on_btn_sair_pressed"]
