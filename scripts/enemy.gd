@@ -31,6 +31,3 @@ func _on_sensor_body_exited(body):
 	var index = bodys.find(body)
 	if index >= 0:
 		bodys.remove(index)
-
-func _on_dead_timeout():
-	autodestroy()
