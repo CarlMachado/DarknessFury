@@ -17,7 +17,6 @@ tile_data = PoolIntArray( 0, 36, 0, 1, 35, 0, 2, 35, 0, 3, 35, 0, 4, 35, 0, 5, 3
 position = Vector2( 288, 160 )
 
 [node name="enemy_spawns" type="Node" parent="."]
-<<<<<<< HEAD
 
 [node name="spawn_enemy0" parent="enemy_spawns" instance=ExtResource( 4 )]
 position = Vector2( -23.4, 310 )
@@ -45,38 +44,5 @@ position = Vector2( 708.895, 737.264 )
 
 [node name="spawn_enemy8" parent="enemy_spawns" instance=ExtResource( 4 )]
 position = Vector2( 211.289, 742.922 )
-=======
-editor/display_folded = true
-
-[node name="spawn_enemy0" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 34, 30 )
-
-[node name="spawn_enemy1" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 34, 30 )
-
-[node name="spawn_enemy2" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 550, 86 )
-
-[node name="spawn_enemy3" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 730, 84 )
-
-[node name="spawn_enemy4" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 1152, 22 )
-
-[node name="spawn_enemy5" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 1252, 344 )
-
-[node name="spawn_enemy6" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 1244, 674 )
-
-[node name="spawn_enemy7" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 714, 676 )
-
-[node name="spawn_enemy8" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 270, 674 )
-
-[node name="spawn_enemy9" parent="enemy_spawns" instance=ExtResource( 5 )]
-position = Vector2( 26, 326 )
->>>>>>> 6712e2eca10eec3caf096d3f57ecd15bfbb6af6d
 
 [node name="mouse_cross" parent="." instance=ExtResource( 5 )]
