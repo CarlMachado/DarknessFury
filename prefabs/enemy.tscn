@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/walk_0.png" type="Texture" id=2]
@@ -28,6 +28,9 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 125.575
+
 [node name="enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
@@ -35,3 +38,10 @@ script = ExtResource( 1 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "idle"
+
+[node name="sensor" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="sensor"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
+[connection signal="body_exited" from="sensor" to="." method="_on_sensor_body_exited"]
