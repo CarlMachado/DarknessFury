@@ -29,7 +29,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 125.575
+radius = 276.261
 
 [node name="enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -40,6 +40,8 @@ frames = SubResource( 1 )
 animation = "idle"
 
 [node name="sensor" type="Area2D" parent="."]
+editor/display_folded = true
+collision_layer = 0
 
 [node name="shape" type="CollisionShape2D" parent="sensor"]
 shape = SubResource( 2 )
