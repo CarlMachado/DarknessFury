@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/arena.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/tile_arena.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/spawn_enemy.tscn" type="PackedScene" id=4]
 
 [node name="arena" type="Node2D"]
 scale = Vector2( 2, 2 )
@@ -16,48 +17,29 @@ position = Vector2( 288, 160 )
 
 [node name="enemy_spawns" type="Node" parent="."]
 
-[node name="spawn_up_left" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 447.246, 29.349 )
+[node name="spawn_enemy1" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 34, 30 )
 
-[node name="timer_ul" type="Timer" parent="enemy_spawns/spawn_up_left"]
+[node name="spawn_enemy2" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 550, 86 )
 
-[node name="spawn_up_right" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 804.597, 25.5375 )
+[node name="spawn_enemy3" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 730, 84 )
 
-[node name="timer_ur" type="Timer" parent="enemy_spawns/spawn_up_right"]
+[node name="spawn_enemy4" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 1152, 22 )
 
-[node name="spawn_right_up" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 1249.84, 191.527 )
+[node name="spawn_enemy5" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 1252, 344 )
 
-[node name="timer_ru" type="Timer" parent="enemy_spawns/spawn_right_up"]
+[node name="spawn_enemy6" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 1244, 674 )
 
-[node name="spawn_right_down" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 1248.61, 499.689 )
+[node name="spawn_enemy7" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 714, 676 )
 
-[node name="timer_rd" type="Timer" parent="enemy_spawns/spawn_right_down"]
+[node name="spawn_enemy8" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 270, 674 )
 
-[node name="spawn_down_right" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 1021.48, 677.711 )
-
-[node name="timer_dr" type="Timer" parent="enemy_spawns/spawn_down_right"]
-
-[node name="spawn_down_midle" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 628.602, 681.394 )
-
-[node name="timer_dm" type="Timer" parent="enemy_spawns/spawn_down_midle"]
-
-[node name="spawn_down_left" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 217.31, 681.394 )
-
-[node name="timer_dl" type="Timer" parent="enemy_spawns/spawn_down_left"]
-
-[node name="spawn_left_down" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 25.7825, 483.729 )
-
-[node name="timer_ld" type="Timer" parent="enemy_spawns/spawn_left_down"]
-
-[node name="spawn_left_up" type="Position2D" parent="enemy_spawns"]
-position = Vector2( 28.238, 218.537 )
-
-[node name="timer_lu" type="Timer" parent="enemy_spawns/spawn_left_up"]
-[connection signal="timeout" from="enemy_spawns/spawn_up_left/timer_ul" to="." method="_on_timer_ul_timeout"]
+[node name="spawn_enemy9" parent="enemy_spawns" instance=ExtResource( 4 )]
+position = Vector2( 26, 326 )

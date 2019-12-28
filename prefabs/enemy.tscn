@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://prefabs/enemy.gd" type="Script" id=1]
+[ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/walk_0.png" type="Texture" id=2]
 [ext_resource path="res://sprites/player/raise_0.png" type="Texture" id=3]
 [ext_resource path="res://sprites/player/raise_1.png" type="Texture" id=4]
