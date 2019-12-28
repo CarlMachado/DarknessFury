@@ -5,4 +5,5 @@ func _ready():
 
 func _on_spear_body_entered(body):
 	print("pegou")
-	pass # Replace with function body.
+	get_tree().call_group("player", "take_spear")
+	queue_free()
