@@ -19,7 +19,7 @@ position = Vector2( 386.27, 165.158 )
 rotation = 0.811578
 
 [node name="player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 322.211, 22.6316 )
+position = Vector2( 313.166, 189.193 )
 
 [node name="enemy_spawns" type="Node" parent="."]
 editor/display_folded = true
