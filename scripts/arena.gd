@@ -4,7 +4,6 @@ var enemy = []
 
 func _ready():
 	# da start nos timers
-	
 	for i in range(9):
 		var spawn_en = 'enemy_spawns/spawn_enemy' + str(i) + '/timer_spawn'
 		get_node(spawn_en).start(1)
@@ -47,6 +46,7 @@ func _ready():
 #	enemy.append(pre_enemy.instance())
 #	enemy[8].global_position = $enemy_spawns/spawn_left_up.global_position
 #	$"../".add_child(enemy[8])
+	pass
 
 func _process(delta):
 	pass
@@ -65,6 +65,7 @@ func _process(delta):
 func _on_timer_ul_timeout():
 	# se o inimigo estiver morto ele renasce 
 	pass
+  
 #	if not enemy[0].alive:
 #		$"../".remove_child(enemy[0])
 #		enemy[0] = pre_enemy.instance()
