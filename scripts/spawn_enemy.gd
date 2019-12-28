@@ -29,3 +29,6 @@ func _on_timer_spawn_timeout():
 	
 	$timer_spawn.stop()
 	
+func _on_walls_area_body_entered(body):
+	if body.has_method("stop_in_area"):
+		body.stop_in_area()

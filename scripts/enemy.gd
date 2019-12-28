@@ -11,12 +11,12 @@ var bodys = []
 var vel = 50
 
 func _ready():
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(3.25), "timeout")
 	homming = true
 
 func _physics_process(delta):
 	if !homming:
-		move_and_slide(Vector2(cos(rotation), sin(rotation)).normalized() * vel * delta)
+		move_and_slide(Vector2(cos(rotation), sin(rotation)) * 50)
 	if bodys.size():
 		var angle = get_angle_to(bodys[0].global_position)
 		if abs(angle) > DEATH_ZONE_ANGLE:
@@ -27,6 +27,9 @@ func autodestroy():
 	alive = false
 	get_tree().call_group("spawn", "dead_enemy")	
 	queue_free()
+
+func stop_in_area():
+	homming = true
 	
 func _on_sensor_body_entered(body):
 	bodys.append(body)

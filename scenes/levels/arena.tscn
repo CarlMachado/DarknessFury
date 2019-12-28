@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/arena.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/tile_arena.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/spawn_enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/mouse_cross.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 57, 0.860004 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 117.5, 0.939129 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 0.844852, 149.114 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 294.479, 0.571289 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 0.830383, 15.5794 )
 
 [node name="arena" type="Node2D"]
 scale = Vector2( 2, 2 )
@@ -17,6 +32,7 @@ tile_data = PoolIntArray( 0, 36, 0, 1, 35, 0, 2, 35, 0, 3, 35, 0, 4, 35, 0, 5, 3
 position = Vector2( 288, 160 )
 
 [node name="enemy_spawns" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="spawn_enemy0" parent="enemy_spawns" instance=ExtResource( 4 )]
 position = Vector2( -23.4, 310 )
@@ -46,3 +62,71 @@ position = Vector2( 708.895, 737.264 )
 position = Vector2( 211.289, 742.922 )
 
 [node name="mouse_cross" parent="." instance=ExtResource( 5 )]
+
+[node name="walls" type="StaticBody2D" parent="."]
+editor/display_folded = true
+collision_layer = 4
+collision_mask = 0
+
+[node name="poly" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 30.1928, 24.9723, 24.928, 30.3967, 24.7684, 321.498, 30.3524, 326.763, 31.7882, 326.763, 31.9478, 25.0552 )
+
+[node name="poly2" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 31.9478, 24.8957, 257.821, 25.2148, 262.607, 30.4796, 262.607, 31.9155, 31.8251, 31.9155 )
+
+[node name="poly3" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 262.891, 31.8469, 263.004, 64.1112, 257.815, 63.7728, 255.897, 61.9678, 256.122, 31.8469 )
+
+[node name="poly4" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 263.066, 57.0125, 383.998, 57.0923, 383.998, 61.8785, 381.844, 63.8728, 263.018, 63.99 )
+
+[node name="poly5" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 377.221, 57.029, 377.221, 29.8582, 382.258, 24.9283, 383.759, 24.9283, 384.187, 57.029 )
+
+[node name="poly6" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 384.041, 25.1944, 609.666, 25.1944, 615.426, 30.6659, 615.138, 31.6738, 384.041, 31.9618 )
+
+[node name="poly7" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 615.016, 31.7075, 614.913, 320.236, 608.028, 320.422, 608.293, 31.8732 )
+
+[node name="poly8" type="CollisionPolygon2D" parent="walls"]
+polygon = PoolVector2Array( 614.974, 320.421, 614.974, 321.934, 609.941, 327, 32.0673, 327.11, 32.2534, 320.132, 607.75, 320.063, 614.938, 320.375 )
+
+[node name="walls_area" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 43, 28 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( 278, 29 )
+shape = SubResource( 1 )
+
+[node name="shape2" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( 101.5, -3 )
+shape = SubResource( 2 )
+
+[node name="shape3" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( 453, -2.5 )
+shape = SubResource( 2 )
+
+[node name="shape4" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( 572.228, 148.614 )
+shape = SubResource( 3 )
+
+[node name="shape5" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( -18.161, 148.24 )
+shape = SubResource( 3 )
+
+[node name="shape6" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( 276.924, 299.44 )
+shape = SubResource( 4 )
+
+[node name="shape7" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( 219.702, 14.361 )
+shape = SubResource( 5 )
+
+[node name="shape8" type="CollisionShape2D" parent="walls_area"]
+position = Vector2( 334.376, 14.361 )
+shape = SubResource( 5 )
+[connection signal="body_entered" from="walls_area" to="enemy_spawns/spawn_enemy0" method="_on_walls_area_body_entered"]
