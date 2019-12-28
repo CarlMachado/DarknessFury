@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 const SPEED = 200
 
+var pre_spear = preload("res://prefabs/spear_hand.tscn")
+
 func _ready():
 	add_to_group("player")
 	pass
@@ -32,3 +34,9 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	
 	move_and_slide(Vector2(x_dir, y_dir) * SPEED)
+
+func take_spear():
+	var spear = pre_spear.instance()
+	spear.global_position = global_position
+	spear.z_index = z_index + 1
+	add_child(spear)
