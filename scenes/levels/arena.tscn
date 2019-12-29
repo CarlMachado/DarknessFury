@@ -32,7 +32,6 @@ tile_data = PoolIntArray( 0, 36, 0, 1, 35, 0, 2, 35, 0, 3, 35, 0, 4, 35, 0, 5, 3
 position = Vector2( 288, 160 )
 
 [node name="enemy_spawns" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="spawn_enemy0" parent="enemy_spawns" instance=ExtResource( 4 )]
 position = Vector2( -23.4, 310 )
