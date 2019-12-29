@@ -19,3 +19,6 @@ func _on_spear_body_entered(body):
 
 func _on_timer_timeout():
 	queue_free()
+
+func _on_timer_dead_timeout():
+	queue_free()
