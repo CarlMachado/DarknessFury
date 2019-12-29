@@ -12,7 +12,7 @@ var vel = 50
 var body 
 
 func _ready():
-	yield(get_tree().create_timer(3.25), "timeout")
+	yield(get_tree().create_timer(60), "timeout")
 	homming = true
 
 func _physics_process(delta):
