@@ -9,7 +9,6 @@ height = 40.9011
 
 [node name="spear_hand" type="StaticBody2D"]
 collision_layer = 8
-
 collision_mask = 4
 script = ExtResource( 1 )
 
