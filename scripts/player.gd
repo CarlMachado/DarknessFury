@@ -1,14 +1,12 @@
 extends KinematicBody2D
 
 const MAX_LIFE = 100
-var life = MAX_LIFE
-
 const SPEED = 200
 
+var life = MAX_LIFE
 var has_spear = false
 
 func _ready():
-	print("vai tomar no cu herikc")
 	pass
 
 func _physics_process(delta):
