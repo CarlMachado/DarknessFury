@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/walk_0.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://sprites/player/raise_1.png" type="Texture" id=7]
 [ext_resource path="res://sprites/player/raise_2.png" type="Texture" id=8]
 [ext_resource path="res://sprites/player/raise_3.png" type="Texture" id=9]
+[ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -28,12 +29,12 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 10.2184
 height = 28.0624
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 1644.38
+[sub_resource type="CircleShape2D" id=3]
+radius = 3061.34
 
 [node name="enemy" type="KinematicBody2D"]
 collision_layer = 2
@@ -45,14 +46,21 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "idle"
 
+[node name="spear" type="Sprite" parent="."]
+position = Vector2( -0.182144, -23.5217 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 10 )
+
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2( -2.04057, -0.680191 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="sensor" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="shape" type="CollisionShape2D" parent="sensor"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
+
+[node name="reload" type="Timer" parent="."]
 [connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
-[connection signal="body_exited" from="sensor" to="." method="_on_sensor_body_exited"]
+[connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
