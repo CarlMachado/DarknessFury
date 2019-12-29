@@ -30,6 +30,7 @@ func _physics_process(delta):
 		$anim_sprite.play("idle")
 	
 	if Input.is_action_just_pressed("ui_attack"):
+		print("matar")
 		get_tree().call_group("spear", "spear_false")
 		has_spear = false
 	
