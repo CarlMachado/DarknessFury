@@ -6,7 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.99158, 3.02806 )
 
-[node name="spear_floor" type="Area2D"]
+[node name="spear_floor" type="Area2D" groups=[
+"spear",
+]]
 script = ExtResource( 1 )
 
 [node name="col_shape" type="CollisionShape2D" parent="."]
@@ -15,4 +17,9 @@ shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
 [connection signal="body_entered" from="." to="." method="_on_spear_body_entered"]
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

@@ -6,6 +6,8 @@
 extents = Vector2( 15.8058, 3.29239 )
 
 [node name="spear_hand" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 2
 
 [node name="col_shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

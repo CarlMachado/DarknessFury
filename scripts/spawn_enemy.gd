@@ -9,6 +9,7 @@ func _ready():
 	#$timer_spawn.start(rand_range(4, 7) 
 	$timer_spawn.start(1) 
 	
+# warning-ignore:unused_argument
 func _process(delta):
 	if enemy == null and !firt_start:
 		enemy = PRE_ENEMY.instance() 

@@ -1,14 +1,11 @@
 extends KinematicBody2D
 
-signal enemy_dead()
-
 const DEATH_ZONE_ANGLE = .01
 const ROT_VEL = 2
 
 var homming = false
 var alive = true
 var bodys = []
-var vel = 50
 
 func _ready():
 	yield(get_tree().create_timer(3.25), "timeout")
@@ -16,6 +13,7 @@ func _ready():
 
 func _physics_process(delta):
 	if !homming:
+# warning-ignore:return_value_discarded
 		move_and_slide(Vector2(cos(rotation), sin(rotation)) * 50)
 	if bodys.size():
 		var angle = get_angle_to(bodys[0].global_position)

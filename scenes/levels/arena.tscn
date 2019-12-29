@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/arena.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/tile_arena.tscn" type="PackedScene" id=2]
@@ -33,8 +33,17 @@ tile_data = PoolIntArray( 0, 36, 0, 1, 35, 0, 2, 35, 0, 3, 35, 0, 4, 35, 0, 5, 3
 position = Vector2( 385.335, 163.945 )
 rotation = 1.0472
 
+[node name="spear_floor2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 160, 196.842 )
+rotation = 2.31578
+
+[node name="spear_floor3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 288.913, 231.832 )
+rotation = 4.01451
+
 [node name="player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 288, 160 )
+position = Vector2( 320, 176 )
+rotation = -1.5708
 
 [node name="enemy_spawns" type="Node" parent="."]
 editor/display_folded = true
@@ -65,8 +74,6 @@ position = Vector2( 708.895, 737.264 )
 
 [node name="spawn_enemy8" parent="enemy_spawns" instance=ExtResource( 5 )]
 position = Vector2( 211.289, 742.922 )
-
-[node name="mouse_cross" parent="." instance=ExtResource( 5 )]
 
 [node name="walls" type="StaticBody2D" parent="."]
 editor/display_folded = true
@@ -134,4 +141,7 @@ shape = SubResource( 5 )
 [node name="shape8" type="CollisionShape2D" parent="walls_area"]
 position = Vector2( 334.376, 14.361 )
 shape = SubResource( 5 )
+
+[node name="mouse_cross" parent="." instance=ExtResource( 6 )]
+z_index = 1000
 [connection signal="body_entered" from="walls_area" to="enemy_spawns/spawn_enemy0" method="_on_walls_area_body_entered"]
