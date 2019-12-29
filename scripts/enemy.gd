@@ -6,6 +6,7 @@ const ROT_VEL = 1
 
 var homming = false
 var alive = true
+
 var loaded = true
 #var bodys = []
 var vel = rand_range(40, 60)
