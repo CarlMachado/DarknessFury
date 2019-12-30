@@ -48,3 +48,7 @@ animation = "idle"
 visible = false
 position = Vector2( 5.38293, 9.52351 )
 texture = ExtResource( 10 )
+
+[node name="reload" type="Timer" parent="."]
+wait_time = 0.75
+[connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]

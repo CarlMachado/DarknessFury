@@ -36,7 +36,8 @@ func _physics_process(delta):
 			get_parent().add_child(spear_attack)
 			$spear.hide()
 			loaded = false
-			$reload.start()
+			$reload.start(rand_range(1.75, 2.5))
+			$reload_weapon.start(rand_range(1, 1.75))
 	if body != null:
 		var angle = get_angle_to(body.global_position)
 		if abs(angle) > DEATH_ZONE_ANGLE:
@@ -62,5 +63,8 @@ func _on_sensor_body_entered(body):
 
 func _on_reload_timeout():
 	loaded = true
-	$spear.show()
 	$reload.stop()
+
+func _on_reload_weapon_timeout():
+	$reload_weapon.stop()
+	$spear.show()
