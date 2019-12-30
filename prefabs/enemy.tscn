@@ -62,5 +62,10 @@ collision_layer = 0
 shape = SubResource( 3 )
 
 [node name="reload" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="reload_weapon" type="Timer" parent="."]
+wait_time = 1.25
 [connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
 [connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
+[connection signal="timeout" from="reload_weapon" to="." method="_on_reload_weapon_timeout"]
