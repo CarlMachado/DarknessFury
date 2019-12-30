@@ -33,6 +33,7 @@ func _physics_process(delta):
 			spear_attack.rotation = global_rotation
 			spear_attack.dir = Vector2(cos(rotation + correct), sin(rotation + correct))
 			spear_attack.target = body
+			spear_attack.scale = spear_attack.scale * 2
 			get_parent().add_child(spear_attack)
 			$spear.hide()
 			loaded = false
