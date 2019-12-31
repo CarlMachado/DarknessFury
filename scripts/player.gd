@@ -7,10 +7,11 @@ const SPEED = 200
 var life = MAX_LIFE
 var has_spear = false
 var loaded = true
+var active_skill_bar = false
 
 func _ready():
 	$area_hit.connect("hitted", self, "on_area_hitted")
-	$area_hit.connect("destroid", self, "on_area_destroid")
+	$area_hit.connect("destroid", self, "on_area_destroid")	
 	pass
 
 func _physics_process(delta):
@@ -45,7 +46,10 @@ func _physics_process(delta):
 	move_and_slide(Vector2(x_dir, y_dir) * SPEED)
 
 func shoot_spear():
-	#if has_spear and loaded:
+#	active_skill_bar = true
+#	$skill_bar/skill_line.active_skill_bar = true
+#	$skill_bar.show()
+#	if has_spear and loaded:
 	get_tree().call_group("spear", "spear_false")
 	
 	var position_mouse = global_position.distance_to(get_global_mouse_position())
