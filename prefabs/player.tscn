@@ -1,16 +1,18 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/walk_0.png" type="Texture" id=2]
-[ext_resource path="res://sprites/player/raise_0.png" type="Texture" id=3]
-[ext_resource path="res://sprites/player/raise_1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/player/raise_2.png" type="Texture" id=5]
-[ext_resource path="res://sprites/player/raise_3.png" type="Texture" id=6]
-[ext_resource path="res://sprites/player/walk_1.png" type="Texture" id=7]
-[ext_resource path="res://sprites/player/walk_2.png" type="Texture" id=8]
-[ext_resource path="res://sprites/player/walk_3.png" type="Texture" id=9]
+[ext_resource path="res://sprites/player/walk_1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/player/walk_2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/player/walk_3.png" type="Texture" id=5]
+[ext_resource path="res://sprites/player/raise_0.png" type="Texture" id=6]
+[ext_resource path="res://sprites/player/raise_1.png" type="Texture" id=7]
+[ext_resource path="res://sprites/player/raise_2.png" type="Texture" id=8]
+[ext_resource path="res://sprites/player/raise_3.png" type="Texture" id=9]
 [ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=10]
 [ext_resource path="res://scripts/hit.gd" type="Script" id=11]
+[ext_resource path="res://scripts/skill_bar.gd" type="Script" id=12]
+[ext_resource path="res://scripts/skill_line.gd" type="Script" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,15 +21,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "rise",
-"speed": 2.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "rise",
+"speed": 2.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -69,4 +71,31 @@ script = ExtResource( 11 )
 [node name="shape" type="CollisionShape2D" parent="area_hit"]
 position = Vector2( -0.875, 0 )
 shape = SubResource( 3 )
+
+[node name="skill_bar" type="Node2D" parent="."]
+editor/display_folded = true
+visible = false
+
+[node name="skill_bar_green" type="ColorRect" parent="skill_bar"]
+margin_left = -23.0
+margin_top = 15.0
+margin_bottom = 24.0
+color = Color( 0.431373, 1, 0, 1 )
+script = ExtResource( 12 )
+
+[node name="skill_bar_red" type="ColorRect" parent="skill_bar"]
+margin_top = 15.0
+margin_right = 21.75
+margin_bottom = 24.0
+color = Color( 1, 0, 0, 1 )
+script = ExtResource( 12 )
+
+[node name="skill_line" type="ColorRect" parent="skill_bar"]
+margin_left = 20.6563
+margin_top = 15.0313
+margin_right = 21.4063
+margin_bottom = 24.0313
+rect_min_size = Vector2( -10, -10 )
+color = Color( 0.054902, 0, 1, 1 )
+script = ExtResource( 13 )
 [connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
