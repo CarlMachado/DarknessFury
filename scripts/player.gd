@@ -75,7 +75,7 @@ func shoot_spear():
 	spear_attack.global_position = $spear_hand.global_position / 2
 	spear_attack.rotation = global_rotation
 	spear_attack.dir = Vector2(cos(angle - correct), sin(angle - correct))
-
+	#spear_attack.scale = spear_attack.scale / 2
 	spear_attack.target_position = get_global_mouse_position()
 	spear_attack.type = "player_attack"
 	get_parent().add_child(spear_attack)
