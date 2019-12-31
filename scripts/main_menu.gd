@@ -1,6 +1,6 @@
 extends Control
 
-var pre_game = preload("res://scenes/levels/arena.tscn")
+var pre_game = preload("res://scenes/levels/initial_scene.tscn")
 var game
 
 func _ready():
@@ -14,7 +14,7 @@ func _on_jogar_pressed():
 	$menu_content/select.play()
 	$menu_content.hide()
 	game = pre_game.instance()
-	add_child(game)
+	get_parent().add_child(game)
 
 func _on_btn_sair_pressed():
 	$menu_content/select.play()
