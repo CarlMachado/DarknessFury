@@ -5,8 +5,11 @@ const PRE_ENEMY = preload("res://prefabs/enemy.tscn")
 var enemy
 var firt_start = false
 
+onready var time_min = 4
+onready var time_max = 7
+
 func _ready():
-	$timer_spawn.start(rand_range(4, 7))
+	$timer_spawn.start(rand_range(time_min, time_max))
 #	$timer_spawn.start(1) 
 	
 func _process(delta):
@@ -22,7 +25,7 @@ func dead_enemy():
 	if enemy != null:
 		if !enemy.alive:
 			enemy = null
-			$timer_spawn.start(rand_range(4, 7))
+			$timer_spawn.start(rand_range(time_min, time_max))
 
 func _on_timer_spawn_timeout():
 	enemy = PRE_ENEMY.instance() 
