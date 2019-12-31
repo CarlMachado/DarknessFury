@@ -8,6 +8,7 @@ var life = MAX_LIFE
 var has_spear = false
 var loaded = true
 var active_skill_bar = false
+var action_answer# alvo verde - 1 / alvo vermelho - 0
 
 func _ready():
 	$area_hit.connect("hitted", self, "on_area_hitted")
@@ -35,7 +36,10 @@ func _physics_process(delta):
 		$anim_sprite.play("idle")
 	
 	if Input.is_action_just_pressed("ui_attack"):
-		shoot_spear()
+		init_shoot_spear()
+	
+	if Input.is_action_just_pressed("ui_skill"): 
+		skill()
 	
 	if has_spear:
 		$spear_hand.show()
@@ -45,18 +49,33 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	move_and_slide(Vector2(x_dir, y_dir) * SPEED)
 
+func skill():
+	if active_skill_bar:
+		get_tree().call_group("skill_bar", "action")
+
+func finish_skill():
+	action_answer = null
+	active_skill_bar = false
+	get_tree().call_group("skill_bar", "desactive")
+
+func init_shoot_spear():
+	active_skill_bar = true
+	get_tree().call_group("skill_bar", "active")
+
 func shoot_spear():
-#	active_skill_bar = true
-#	$skill_bar/skill_line.active_skill_bar = true
-#	$skill_bar.show()
-#	if has_spear and loaded:
+#	if has_spear and loaded and !active_skill_bar and action_answer != null:
 	get_tree().call_group("spear", "spear_false")
 	
 	var position_mouse = global_position.distance_to(get_global_mouse_position())
 	var angle = atan2(get_global_mouse_position().y - global_position.y, get_global_mouse_position().x - global_position.x)
-	var correct = 0.2792664417184 - 0.037934649586 * log(position_mouse)
-	var spear_attack = PRE_SPEAR.instance()
+	var correct = 0
 	
+	if action_answer == 1: # alvo verde
+		correct = 0.2792664417184 - 0.037934649586 * log(position_mouse)
+	else:
+		pass
+		
+	var spear_attack = PRE_SPEAR.instance()	
 	spear_attack.global_position = $spear_hand.global_position / 2
 	spear_attack.rotation = global_rotation
 	spear_attack.dir = Vector2(cos(angle - correct), sin(angle - correct))
@@ -64,6 +83,7 @@ func shoot_spear():
 	spear_attack.type = "player_attack"
 	get_parent().add_child(spear_attack)
 	
+	finish_skill()
 	has_spear = false
 	loaded = false
 	$reload.start()
@@ -83,3 +103,7 @@ func on_area_hitted(damage, health, node):
 func on_area_destroid():
 #	queue_free()
 	pass
+	
+func skill_action(action):
+	self.action_answer = action
+	shoot_spear()
