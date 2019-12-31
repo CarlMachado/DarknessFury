@@ -4,8 +4,8 @@
 [ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 3.8202
-height = 40.9011
+radius = 2.66984
+height = 26.257
 
 [node name="spear_hand" type="Area2D"]
 collision_layer = 0
@@ -21,3 +21,6 @@ position = Vector2( -0.0419159, -0.665776 )
 rotation = 1.5708
 shape = SubResource( 1 )
 [connection signal="area_entered" from="." to="." method="_on_spear_hand_area_entered"]
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )

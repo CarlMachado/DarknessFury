@@ -46,6 +46,7 @@ func _physics_process(delta):
 
 func shoot_spear():
 	get_tree().call_group("spear", "spear_false")
+
 	var position_mouse = get_global_mouse_position()
 	rotation += get_angle_to(position_mouse)
 	
@@ -62,10 +63,8 @@ func shoot_spear():
 	$reload.start()
 
 func take_spear():
-	if has_spear:
-		get_tree().call_group("spear", "spear_true")
-	else:
-		get_tree().call_group("spear", "spear_true")
+	get_tree().call_group("spear", "spear_true")
+	if not has_spear:
 		has_spear = true
 
 func _on_reload_timeout():
