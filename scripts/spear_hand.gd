@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 const PRE_SPEAR_FLOOR = preload("res://prefabs/spear_floor.tscn")
 const MAX_SPEED = 400
@@ -11,6 +11,8 @@ var vel_init = 1500
 var max_dist = 650
 var homming = false
 var acell = vel_init
+var damage = 10
+var type = ""
 
 onready var target
 onready var target_position
@@ -44,3 +46,13 @@ func stop_projectile():
 	spear_floor.rotation = global_rotation
 	get_parent().add_child(spear_floor)
 	autodestroy()
+
+func auto_destroy():
+	queue_free()
+
+func _on_spear_hand_area_entered(area):
+	var area_layer = area.get_collision_layer()
+	if (area_layer == 32 and type == "enemy_attack") or (area_layer == 16 and type == "player_attack"):
+		if area.has_method("hit"):
+			area.hit(damage, self) 
+			auto_destroy()

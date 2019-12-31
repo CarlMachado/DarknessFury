@@ -13,6 +13,8 @@ var vel = rand_range(40, 60)
 var body 
 
 func _ready():
+	$area_damage.connect("hitted", self, "on_area_hitted")
+	$area_damage.connect("destroid", self, "on_area_destroid")
 	yield(get_tree().create_timer(60), "timeout")
 	homming = true
 
@@ -33,6 +35,7 @@ func _physics_process(delta):
 			spear_attack.rotation = global_rotation
 			spear_attack.dir = Vector2(cos(rotation + correct), sin(rotation + correct))
 			spear_attack.target = body
+			spear_attack.type = "enemy_attack"
 			spear_attack.scale = spear_attack.scale * 2
 			get_parent().add_child(spear_attack)
 			$spear.hide()
@@ -69,3 +72,10 @@ func _on_reload_timeout():
 func _on_reload_weapon_timeout():
 	$reload_weapon.stop()
 	$spear.show()
+	
+func on_area_hitted(damage, health, node):
+	pass
+
+func on_area_destroid():
+	autodestroy()
+	pass
