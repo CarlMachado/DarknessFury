@@ -1,10 +1,16 @@
-extends ColorRect
-
-onready var init_ret_size = rect_size
+extends Node2D
 
 func _ready():
-	pass 
-
-func _draw():
+	self.hide() 
 	pass
-#	draw_rect(Rect2(Vector2(), init_ret_size / 2), Color(0, .6, 0), false)
+
+func _process(delta):
+	pass
+#	if active_skill_bar:
+#		self.skill_bar_green.queue_free()
+
+func active():
+	self.show()
+	
+func desactive():
+	self.hide()

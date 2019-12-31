@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/arena.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/mouse_cross.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefabs/tile_arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/spawn_enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prefabs/skill_bar.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.5568, 0.860004 )
@@ -104,4 +105,8 @@ shape = SubResource( 5 )
 [node name="shape8" type="CollisionShape2D" parent="walls_area_enemy"]
 position = Vector2( 334.376, 14.361 )
 shape = SubResource( 5 )
+
+[node name="skill_bar" parent="." instance=ExtResource( 6 )]
+position = Vector2( 317.686, 270.384 )
+z_index = 1001
 [connection signal="body_entered" from="walls_area_enemy" to="enemy_spawns/spawn_enemy0" method="_on_walls_area_body_entered"]
