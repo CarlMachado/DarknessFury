@@ -9,6 +9,8 @@ var has_spear = false
 var loaded = true
 
 func _ready():
+	$area_hit.connect("hitted", self, "on_area_hitted")
+	$area_hit.connect("destroid", self, "on_area_destroid")
 	pass
 
 func _physics_process(delta):
@@ -31,7 +33,7 @@ func _physics_process(delta):
 	if not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up") and not Input.is_action_pressed("ui_right") and not Input.is_action_pressed("ui_left"):
 		$anim_sprite.play("idle")
 	
-	if Input.is_action_just_pressed("ui_attack") and has_spear and loaded:
+	if Input.is_action_just_pressed("ui_attack"):# and has_spear and loaded:
 		shoot_spear()
 	
 	if has_spear:
@@ -44,28 +46,15 @@ func _physics_process(delta):
 
 func shoot_spear():
 	get_tree().call_group("spear", "spear_false")
-	var position_mouse = global_position.distance_to(get_global_mouse_position())
-	var correct
+	var position_mouse = get_global_mouse_position()
+	rotation += get_angle_to(position_mouse)
 	
-	print(position_mouse)
-	if position_mouse > 1150:
-		correct = 0.0109
-	if position_mouse > 1000:
-		correct = 0.0110
-	if position_mouse > 900:
-		correct = 0.0125
-	elif position_mouse > 600:
-		correct = 0.020
-	elif position_mouse > 300:
-		correct = 0.05
-	else:
-		correct = 0.175
-		
 	var spear_attack = PRE_SPEAR.instance()
 	spear_attack.global_position = $spear_hand.global_position / 2
 	spear_attack.rotation = global_rotation
-	spear_attack.dir = Vector2(cos(rotation + correct), sin(rotation + correct))
+	spear_attack.dir = Vector2(cos(rotation), sin(rotation))
 	spear_attack.target_position = get_global_mouse_position()
+	spear_attack.type = "player_attack"
 	get_parent().add_child(spear_attack)
 	
 	has_spear = false
@@ -82,3 +71,10 @@ func take_spear():
 func _on_reload_timeout():
 	$reload.stop()
 	loaded = true
+	
+func on_area_hitted(damage, health, node):
+	pass
+
+func on_area_destroid():
+#	queue_free()
+	pass

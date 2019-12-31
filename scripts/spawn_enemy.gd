@@ -19,8 +19,10 @@ func _process(delta):
 		$timer_spawn.stop()
 
 func dead_enemy():
-	if !enemy.alive:
-		$timer_spawn.start(rand_range(4, 7))
+	if enemy != null:
+		if !enemy.alive:
+			enemy = null
+			$timer_spawn.start(rand_range(4, 7))
 
 func _on_timer_spawn_timeout():
 	enemy = PRE_ENEMY.instance() 
