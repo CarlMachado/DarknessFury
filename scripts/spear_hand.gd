@@ -1,15 +1,12 @@
 extends Area2D
 
 const PRE_SPEAR_FLOOR = preload("res://prefabs/spear_floor.tscn")
-const MAX_SPEED = 400
-const MIN_SPEED = 0
+const MIN_SPEED = 800
 const DEATH_ZONE_ACELL = 30
 const DEATH_ZONE_ANGLE = .01
 
 var dir = Vector2()
-var vel_init = 1500
-var max_dist = 650
-var homming = false
+var vel_init = 1000
 var acell = vel_init
 var damage = 10
 var type = ""
@@ -23,17 +20,15 @@ func _ready():
 		target_position = target.global_position
 
 func _physics_process(delta):
-	acell = lerp(acell, MIN_SPEED, .035) 
+	acell = lerp(acell, MIN_SPEED, .05) 
 	translate(dir * acell * delta)
 	#if global_position.distance_to(initpos) > max_dist:
 	if acell <= DEATH_ZONE_ACELL or goalTarget():
-		acell = lerp(acell, MIN_SPEED, rand_range(0.2, 0.4))
-	if acell <= .1:
 		stop_projectile()
 
 func goalTarget():
 	if target != null:
-		return global_position.distance_to(target_position) <= rand_range(10, 30)
+		return global_position.distance_to(target_position) <= rand_range(10, 100)
 	else:
 		return false
 

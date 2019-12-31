@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/walk_0.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sprites/enemy/walk_2.png" type="Texture" id=4]
 [ext_resource path="res://sprites/enemy/walk_3.png" type="Texture" id=5]
 [ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=6]
+[ext_resource path="res://scripts/hit.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -20,15 +21,15 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 3061.34
-
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 7.67426
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 10.2184
 height = 28.0624
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 3061.34
+
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 10, 23.6375 )
+extents = Vector2( 10, 23.8316 )
 
 [node name="enemy" type="KinematicBody2D"]
 collision_layer = 2
@@ -45,32 +46,32 @@ position = Vector2( -0.182144, -23.5217 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( -2.04057, -0.680191 )
+shape = SubResource( 2 )
+
 [node name="sensor" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 0
 
 [node name="shape" type="CollisionShape2D" parent="sensor"]
-shape = SubResource( 2 )
-
-[node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2( -2.04057, -0.680191 )
 shape = SubResource( 3 )
+
+[node name="area_damage" type="Area2D" parent="."]
+editor/display_folded = true
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 7 )
+
+[node name="shape" type="CollisionShape2D" parent="area_damage"]
+position = Vector2( -1.59921, 0.228458 )
+shape = SubResource( 4 )
 
 [node name="reload" type="Timer" parent="."]
 wait_time = 2.5
 
 [node name="reload_weapon" type="Timer" parent="."]
 wait_time = 1.25
-
-[node name="area_damage" type="Area2D" parent="."]
-editor/display_folded = true
-collision_layer = 16
-collision_mask = 0
-script = ExtResource( 11 )
-
-[node name="shape" type="CollisionShape2D" parent="area_damage"]
-position = Vector2( -2.58471, 0.807719 )
-shape = SubResource( 4 )
 [connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
 [connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
 [connection signal="timeout" from="reload_weapon" to="." method="_on_reload_weapon_timeout"]
-[connection signal="destroid" from="area_damage" to="." method="_on_area_damage_destroid"]
