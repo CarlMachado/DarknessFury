@@ -6,6 +6,7 @@ signal unload
 signal restart 
 
 var kills = 0 setget set_kills
+var player_live = true
 
 func _ready():
 	pass 
@@ -25,6 +26,5 @@ func unload():
 	
 func restart():
 	emit_signal("restart")
-
 
 

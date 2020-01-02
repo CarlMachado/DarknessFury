@@ -1,6 +1,8 @@
 extends Control
 
 var pre_game = preload("res://scenes/levels/initial_scene.tscn")
+var pre_restart = preload("res://scenes/levels/arena.tscn")
+
 var game
 
 func _ready():
@@ -11,11 +13,13 @@ func _process(delta):
 	pass
 
 func _on_jogar_pressed():
-	$menu_content/select.play()
-	$menu_content.hide()
 	if game != null:
 		game.queue_free()
-	game = pre_game.instance()
+		game = pre_restart.instance()
+	else:
+		$menu_content/select.play()
+		$menu_content.hide()
+		game = pre_game.instance()
 	get_parent().add_child(game)
 
 func _on_btn_sair_pressed():
