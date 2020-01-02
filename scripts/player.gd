@@ -18,7 +18,7 @@ var status = PLAYING
 func _ready():
 	$area_hit.connect("hitted", self, "on_area_hitted")
 	$area_hit.connect("destroid", self, "on_area_destroid")	
-	$player_dead.hide()
+	GAME.player_live = true
 
 func _physics_process(delta):
 	if status == PLAYING:
@@ -62,11 +62,13 @@ func playing(delta):
 	
 func dead(delta):
 	if !start_dead:
+		GAME.player_live = false
+		get_tree().call_group("skill_bar", "destroy")
 		GAME.restart()
+		$area_hit.queue_free()
+		$shape.queue_free()
+		$spear_hand.queue_free()
 		$anim_sprite.play("dead")
-#		$anim_sprite.hide()
-#		$spear_hand.hide()
-#		$player_dead.show()
 		start_dead = true
 	
 	if Input.is_action_pressed("ui_accept"):
@@ -120,6 +122,7 @@ func shoot_spear():
 func take_spear():
 	get_tree().call_group("spear", "spear_true")
 	if not has_spear:
+#		$anim_sprite.play("take_weapon")
 		has_spear = true
 	GAME.reload(loaded, has_spear)
 

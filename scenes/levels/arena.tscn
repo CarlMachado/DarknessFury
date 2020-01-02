@@ -236,6 +236,9 @@ margin_right = 976.926
 margin_bottom = 350.019
 custom_fonts/font = SubResource( 8 )
 text = "PRESS ENTER TO RESTART"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="anim_restart" type="AnimationPlayer" parent="HUD"]
 anims/restart = SubResource( 9 )

@@ -33,6 +33,11 @@ animations = [ {
 "loop": false,
 "name": "dead",
 "speed": 4.0
+}, {
+"frames": [ null, ExtResource( 2 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "take_weapon",
+"speed": 1.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -52,7 +57,7 @@ script = ExtResource( 1 )
 
 [node name="anim_sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "dead"
+animation = "take_weapon"
 
 [node name="spear_hand" type="Sprite" parent="."]
 position = Vector2( 5.38293, 9.52351 )
@@ -74,9 +79,4 @@ script = ExtResource( 11 )
 [node name="shape" type="CollisionShape2D" parent="area_hit"]
 position = Vector2( -0.875, 0 )
 shape = SubResource( 3 )
-
-[node name="player_dead" type="Sprite" parent="."]
-visible = false
-position = Vector2( -5.91993, 1.08512 )
-texture = ExtResource( 6 )
 [connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]

@@ -19,10 +19,13 @@ func _ready():
 	homming = true
 
 func _physics_process(delta):
+	if !GAME.player_live:
+		body = null
+	
 	if !homming:
 		move_and_slide(Vector2(cos(rotation), sin(rotation)) * vel)
 	else:
-		if loaded and body != null:
+		if loaded and body != null and GAME.player_live:
 			var correct	
 			if global_position.distance_to(body.global_position) > 300:
 				correct = 0.05
