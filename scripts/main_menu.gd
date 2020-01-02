@@ -13,6 +13,8 @@ func _process(delta):
 func _on_jogar_pressed():
 	$menu_content/select.play()
 	$menu_content.hide()
+	if game != null:
+		game.queue_free()
 	game = pre_game.instance()
 	get_parent().add_child(game)
 
