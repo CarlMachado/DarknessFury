@@ -8,7 +8,6 @@
 [node name="dialogues" type="Node2D"]
 
 [node name="speak_ballon_1" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 texture = ExtResource( 1 )
 centered = false
@@ -39,7 +38,6 @@ position = Vector2( 230.839, 266.008 )
 texture = ExtResource( 4 )
 
 [node name="speak_ballon_2" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 texture = ExtResource( 1 )
 centered = false
@@ -70,7 +68,6 @@ position = Vector2( 230.839, 266.008 )
 texture = ExtResource( 4 )
 
 [node name="speak_ballon_3" type="Sprite" parent="."]
-editor/display_folded = true
 visible = false
 texture = ExtResource( 1 )
 centered = false
