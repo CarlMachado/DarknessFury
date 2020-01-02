@@ -69,10 +69,10 @@ func on_unload():
 [sub_resource type="DynamicFont" id=7]
 size = 75
 font_data = ExtResource( 18 )
+
 [sub_resource type="DynamicFont" id=8]
 size = 100
 font_data = ExtResource( 18 )
-
 
 [sub_resource type="Animation" id=9]
 resource_name = "restart"
@@ -103,14 +103,15 @@ tracks/1/keys = {
 "values": [ Color( 0, 0, 0, 0.882353 ), Color( 0, 0, 0, 0.490196 ) ]
 }
 
-[node name="arena" type="Node2D"]
+[node name="arena" type="Node2D" groups=[
+"arena",
+]]
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 
 [node name="play_time" type="Timer" parent="." groups=[
 "arena",
 ]]
-wait_time = 30.0
 autostart = true
 
 [node name="mouse_cross" parent="." instance=ExtResource( 2 )]
@@ -212,7 +213,6 @@ position = Vector2( 717.716, 724.768 )
 position = Vector2( 61.1833, 801.068 )
 
 [node name="spawn_enemy9" parent="enemy_spawns" instance=ExtResource( 13 )]
-
 position = Vector2( -295.157, 668.656 )
 
 [node name="walls_area_enemy" type="Area2D" parent="."]
@@ -262,7 +262,6 @@ position = Vector2( 113.1, 115.392 )
 
 [node name="skill_bar" parent="HUD" instance=ExtResource( 15 )]
 visible = false
-
 position = Vector2( 635.372, 540.768 )
 scale = Vector2( 2, 2 )
 z_index = 1001
@@ -274,7 +273,6 @@ position = Vector2( 84.2025, 121.7 )
 rotation = -1.5708
 scale = Vector2( 2.5, 2 )
 texture = ExtResource( 16 )
-
 __meta__ = {
 "_edit_lock_": true
 }

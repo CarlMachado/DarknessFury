@@ -49,9 +49,13 @@ func playing(delta):
 	if not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up") and not Input.is_action_pressed("ui_right") and not Input.is_action_pressed("ui_left"):
 		$anim_sprite.play("idle")
 		$particles_floor.emitting = false
+		if $walking.playing:
+			$walking.stop()
 	else:
 		$anim_sprite.play("walk")
 		$particles_floor.emitting = true
+		if not $walking.playing:
+			$walking.play(18.0)
 	
 	if Input.is_action_just_pressed("ui_attack") and atk_status == ATTACK:
 		init_shoot_spear()
@@ -96,8 +100,6 @@ func skill():
 
 func time_out_boss():
 	time_out = true
-	
-	print("time out")
 
 func finish_skill():
 	action_answer = null
