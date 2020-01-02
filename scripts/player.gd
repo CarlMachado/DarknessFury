@@ -1,10 +1,9 @@
 extends KinematicBody2D
 
 const PRE_SPEAR = preload("res://prefabs/spear_hand.tscn")
-const MAX_LIFE = 100
 const SPEED = 200
 
-var life = MAX_LIFE
+var time_out = false
 var has_spear = false
 var loaded = true
 var active_skill_bar = false
@@ -12,12 +11,15 @@ var start_dead = false
 var action_answer # alvo verde - 1 / alvo vermelho - 0
 var life_state = 1
 
-enum {PLAYING, DEAD, RESTART}
+enum {ATTACK, SKILL}
+var atk_status = ATTACK
+
+enum {PLAYING, DEAD, BOSS, RESTART}
 var status = PLAYING
 
 func _ready():
 	$area_hit.connect("hitted", self, "on_area_hitted")
-	$area_hit.connect("destroid", self, "on_area_destroid")	
+	$area_hit.connect("destroid", self, "on_area_destroid")
 	GAME.player_live = true
 
 func _physics_process(delta):
@@ -25,6 +27,11 @@ func _physics_process(delta):
 		playing(delta)
 	elif status == DEAD:
 		dead(delta)
+	elif status == BOSS:
+		boss(delta)
+
+func boss(delta):
+	get_tree().call_group("arena", "init_boss")
 
 func playing(delta):
 	var x_dir = 0
@@ -46,11 +53,12 @@ func playing(delta):
 	if not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up") and not Input.is_action_pressed("ui_right") and not Input.is_action_pressed("ui_left"):
 		$anim_sprite.play("idle")
 	
-	if Input.is_action_just_pressed("ui_attack"):
+	if Input.is_action_just_pressed("ui_attack") and atk_status == ATTACK:
 		init_shoot_spear()
-	
-	if Input.is_action_just_pressed("ui_skill"): 
+		atk_status = SKILL
+	elif Input.is_action_just_pressed("ui_attack") and atk_status == SKILL: 
 		skill()
+		atk_status = ATTACK
 	
 	if has_spear:
 		$spear_hand.show()
@@ -83,6 +91,11 @@ func skill():
 	if active_skill_bar:
 		get_tree().call_group("skill_bar", "action")
 
+func time_out_boss():
+	time_out = true
+	
+	print("time out")
+
 func finish_skill():
 	action_answer = null
 	active_skill_bar = false
@@ -105,7 +118,7 @@ func shoot_spear():
 	else:
 		pass
 		
-	var spear_attack = PRE_SPEAR.instance()	
+	var spear_attack = PRE_SPEAR.instance()
 	spear_attack.global_position = $spear_hand.global_position / 2
 	spear_attack.rotation = global_rotation
 	spear_attack.dir = Vector2(cos(angle - correct), sin(angle - correct))
@@ -137,7 +150,10 @@ func on_area_hitted(damage, health, node):
 	pass
 
 func on_area_destroid():
-	status = DEAD
+	if time_out:
+		status = BOSS
+	else:
+		status = DEAD
 	
 func skill_action(action):
 	self.action_answer = action

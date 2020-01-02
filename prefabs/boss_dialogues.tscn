@@ -1,0 +1,226 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sprites/speak_ballon.png" type="Texture" id=1]
+[ext_resource path="res://fonts/ingame.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/enter.tres" type="DynamicFont" id=3]
+[ext_resource path="res://sprites/king_face.png" type="Texture" id=4]
+[ext_resource path="res://sprites/hero_face.png" type="Texture" id=5]
+
+[node name="boss_dialogues" type="Node2D"]
+
+[node name="speak_ballon_1" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_1"]
+margin_left = 201.0
+margin_top = 217.0
+margin_right = 363.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Alguém com tanto poder
+não pode ficar vivo."
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_1"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_1"]
+position = Vector2( 406.839, 266.008 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="speak_ballon_2" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_2"]
+margin_left = 201.0
+margin_top = 217.0
+margin_right = 363.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Você já cousou muita dor e sofrimento a esse reino!"
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_2"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_2"]
+position = Vector2( 406.839, 266.008 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="speak_ballon_3" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_3"]
+margin_left = 277.0
+margin_top = 217.0
+margin_right = 457.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Do que você está falando?"
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_3"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_3"]
+position = Vector2( 230.839, 266.008 )
+texture = ExtResource( 5 )
+
+[node name="speak_ballon_4" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_4"]
+margin_left = 201.0
+margin_top = 217.0
+margin_right = 363.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Eles conseguiram te dar um jeito mesmo, hein?"
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_4"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_4"]
+position = Vector2( 406.839, 266.008 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="speak_ballon_5" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_5"]
+margin_left = 201.0
+margin_top = 217.0
+margin_right = 363.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Você é um ser imortal!
+Bom, era né..."
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_5"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_5"]
+position = Vector2( 406.839, 266.008 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="speak_ballon_6" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_6"]
+margin_left = 201.0
+margin_top = 217.0
+margin_right = 363.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Nossos magos descobriram um novo feitiço capaz de te deter!"
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_6"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_6"]
+position = Vector2( 406.839, 266.008 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="speak_ballon_7" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_7"]
+margin_left = 277.0
+margin_top = 217.0
+margin_right = 457.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Já que é assim... 
+Boa sorte tentando!"
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_7"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_7"]
+position = Vector2( 230.839, 266.008 )
+texture = ExtResource( 5 )
