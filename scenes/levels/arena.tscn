@@ -1,11 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/arena.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/mouse_cross.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefabs/tile_arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/spawn_enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://prefabs/skill_bar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://prefabs/life.tscn" type="PackedScene" id=6]
+[ext_resource path="res://prefabs/skill_bar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=8]
+[ext_resource path="res://sprites/weapon/spear_floor.png" type="Texture" id=9]
+[ext_resource path="res://fonts/pixelfont.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.5568, 0.860004 )
@@ -21,6 +25,37 @@ extents = Vector2( 294.479, 0.571289 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 0.830383, 15.5794 )
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends CanvasLayer
+
+func _ready():
+	GAME.connect(\"kills_changed\", self, \"on_kills_changed\")
+	GAME.connect(\"reload\", self, \"on_reload\")
+	GAME.connect(\"unload\", self, \"on_unload\")
+	write_kill()
+
+func on_kills_changed():
+	write_kill()
+
+func write_kill():
+	$kills.text = \"KILLS: \" + str(GAME.kills)
+	
+func on_reload(loaded, has_spear):
+	if loaded and has_spear:
+		$spear_floor.hide()
+		$spear_hide.show()
+	elif has_spear:
+		$spear_hide.hide()
+		$spear_floor.show()
+	
+func on_unload():
+	$spear_hide.hide()
+	$spear_floor.hide()"
+
+[sub_resource type="DynamicFont" id=7]
+size = 75
+font_data = ExtResource( 10 )
 
 [node name="arena" type="Node2D"]
 scale = Vector2( 2, 2 )
@@ -106,7 +141,51 @@ shape = SubResource( 5 )
 position = Vector2( 334.376, 14.361 )
 shape = SubResource( 5 )
 
-[node name="skill_bar" parent="." instance=ExtResource( 6 )]
-position = Vector2( 317.686, 270.384 )
+[node name="HUD" type="CanvasLayer" parent="."]
+script = SubResource( 6 )
+
+[node name="life" parent="HUD" instance=ExtResource( 6 )]
+position = Vector2( 113.1, 115.392 )
+
+[node name="skill_bar" parent="HUD" instance=ExtResource( 7 )]
+position = Vector2( 635.372, 540.768 )
+scale = Vector2( 2, 2 )
 z_index = 1001
+
+[node name="spear_hide" type="Sprite" parent="HUD"]
+visible = false
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 84.2025, 121.7 )
+rotation = -1.5708
+scale = Vector2( 2.5, 2 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="spear_floor" type="Sprite" parent="HUD"]
+visible = false
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 84.2025, 121.7 )
+rotation = -1.5708
+scale = Vector2( 2.5, 2 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="kills" type="Label" parent="HUD"]
+modulate = Color( 0, 0, 0, 0.784314 )
+margin_left = 1015.88
+margin_top = 72.3789
+margin_right = 1153.88
+margin_bottom = 324.379
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.0606318, 0.0585002, 0.0585002, 0.882353 )
+text = "KILLS:
+
+"
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="body_entered" from="walls_area_enemy" to="enemy_spawns/spawn_enemy0" method="_on_walls_area_body_entered"]

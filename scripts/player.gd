@@ -8,7 +8,8 @@ var life = MAX_LIFE
 var has_spear = false
 var loaded = true
 var active_skill_bar = false
-var action_answer# alvo verde - 1 / alvo vermelho - 0
+var action_answer # alvo verde - 1 / alvo vermelho - 0
+var life_state = 1
 
 func _ready():
 	$area_hit.connect("hitted", self, "on_area_hitted")
@@ -87,17 +88,22 @@ func shoot_spear():
 	has_spear = false
 	loaded = false
 	$reload.start()
+	GAME.unload()
 
 func take_spear():
 	get_tree().call_group("spear", "spear_true")
 	if not has_spear:
 		has_spear = true
+	GAME.reload(loaded, has_spear)
 
 func _on_reload_timeout():
 	$reload.stop()
 	loaded = true
+	GAME.reload(loaded, has_spear)
 	
 func on_area_hitted(damage, health, node):
+	life_state += 1
+	get_tree().call_group("life_HUD", "change_state", life_state)
 	pass
 
 func on_area_destroid():

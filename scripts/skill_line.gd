@@ -11,7 +11,7 @@ func _ready():
 
 func _process(delta):
 	if active_skill_bar:
-		print("x: " + str(rect_global_position.x))
+#		print("x: " + str(rect_global_position.x))
 		if rect_global_position.x - speed * delta > 542 and size == 0: # cheguei no verde -> rect_global_position.x > 632
 			rect_global_position.x -= speed * delta
 		else:
