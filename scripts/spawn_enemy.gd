@@ -6,6 +6,7 @@ export(int, "Cima", "Direita", "Baixo", "Esquerda") var side = 0
 
 var enemy
 var firt_start = false
+var kills_stage = 5
 
 onready var time_min = 4
 onready var time_max = 7
@@ -67,5 +68,17 @@ func new_position():
 		side_coords = [-300, 0, 0, 700]
 	
 	$".".global_position = Vector2(rand_range(side_coords[0], side_coords[1]), rand_range(side_coords[2], side_coords[3]))
+	
+func change_timer_spawn():
+	print("min old: " + str(time_min))
+	print("max old: " + str(time_max))
+	time_min += rand_range(0.25 / kills_stage, 1 / kills_stage)
+	time_max += rand_range(0.35 / kills_stage, 1 / kills_stage)
+	print("min new: " + str(time_min))
+	print("max new: " + str(time_max))
+	
+	
+	
+	
 	
 	

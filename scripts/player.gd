@@ -8,15 +8,25 @@ var life = MAX_LIFE
 var has_spear = false
 var loaded = true
 var active_skill_bar = false
+var start_dead = false
 var action_answer # alvo verde - 1 / alvo vermelho - 0
 var life_state = 1
+
+enum {PLAYING, DEAD, RESTART}
+var status = PLAYING
 
 func _ready():
 	$area_hit.connect("hitted", self, "on_area_hitted")
 	$area_hit.connect("destroid", self, "on_area_destroid")	
-	pass
+	$player_dead.hide()
 
 func _physics_process(delta):
+	if status == PLAYING:
+		playing(delta)
+	elif status == DEAD:
+		dead(delta)
+
+func playing(delta):
 	var x_dir = 0
 	var y_dir = 0
 	
@@ -49,6 +59,23 @@ func _physics_process(delta):
 	
 	look_at(get_global_mouse_position())
 	move_and_slide(Vector2(x_dir, y_dir) * SPEED)
+	
+func dead(delta):
+	if !start_dead:
+		GAME.restart()
+		$anim_sprite.play("dead")
+#		$anim_sprite.hide()
+#		$spear_hand.hide()
+#		$player_dead.show()
+		start_dead = true
+	
+	if Input.is_action_pressed("ui_accept"):
+		restart()
+
+func restart():
+	status = RESTART
+	get_tree().call_group("Menu", "_on_jogar_pressed")
+	queue_free()
 
 func skill():
 	if active_skill_bar:
@@ -107,8 +134,7 @@ func on_area_hitted(damage, health, node):
 	pass
 
 func on_area_destroid():
-#	queue_free()
-	pass
+	status = DEAD
 	
 func skill_action(action):
 	self.action_answer = action

@@ -3,6 +3,7 @@ extends Node
 signal kills_changed 
 signal reload 
 signal unload 
+signal restart 
 
 var kills = 0 setget set_kills
 
@@ -21,3 +22,9 @@ func reload(loaded, has_spear):
 	
 func unload():
 	emit_signal("unload")
+	
+func restart():
+	emit_signal("restart")
+
+
+
