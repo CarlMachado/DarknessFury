@@ -50,6 +50,7 @@ func _physics_process(delta):
 func autodestroy():
 	alive = false
 	get_tree().call_group("spawn", "dead_enemy")	
+	GAME.add_kill()
 	queue_free()
 
 func stop_in_area():
