@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/spear_hand.gd" type="Script" id=1]
 [ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=2]
@@ -6,6 +6,24 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.66984
 height = 26.257
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.310227 ), 0.0, 2.09896, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+spread = 50.0
+gravity = Vector3( -60, 0, 0 )
+initial_velocity = 11.0
+angular_velocity = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 4 )
+color = Color( 0.368627, 0.360784, 0.360784, 1 )
 
 [node name="spear_hand" type="Area2D"]
 collision_layer = 0
@@ -19,4 +37,9 @@ shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="particles_attack" type="Particles2D" parent="."]
+position = Vector2( -16.3968, -0.646179 )
+amount = 12
+process_material = SubResource( 2 )
 [connection signal="area_entered" from="." to="." method="_on_spear_hand_area_entered"]

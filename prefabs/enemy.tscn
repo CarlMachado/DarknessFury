@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/walk_0.png" type="Texture" id=2]
-[ext_resource path="res://sprites/enemy/walk_1.png" type="Texture" id=3]
-[ext_resource path="res://sprites/enemy/walk_2.png" type="Texture" id=4]
-[ext_resource path="res://sprites/enemy/walk_3.png" type="Texture" id=5]
-[ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=6]
-[ext_resource path="res://scripts/hit.gd" type="Script" id=7]
+[ext_resource path="res://sprites/enemy/raise_2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/raise_1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemy/raise_0.png" type="Texture" id=5]
+[ext_resource path="res://sprites/enemy/walk_1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/enemy/walk_2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/enemy/walk_3.png" type="Texture" id=8]
+[ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=9]
+[ext_resource path="res://scripts/hit.gd" type="Script" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -16,6 +19,11 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "dead",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
@@ -31,6 +39,96 @@ radius = 3061.34
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 23.8316 )
 
+[sub_resource type="Animation" id=5]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( -42, 0 ), Vector2( -27, 0 ), Vector2( -10, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("sprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0.882353 ), Color( 1, 1, 1, 0.0980392 ) ]
+}
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.474359, 1 )
+colors = PoolColorArray( 0.144192, 0.140249, 0.140249, 1, 0.184314, 0.180392, 0.180392, 1, 0.247059, 0.243137, 0.243137, 0.882353 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0.666912 ), 0.0, 1.37596, 0, 0, Vector2( 1, 1 ), -0.380726, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 75.0
+angular_velocity = 1.05
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.5
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 7 )
+
 [node name="enemy" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 4
@@ -39,12 +137,12 @@ script = ExtResource( 1 )
 [node name="anim_sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "idle"
+animation = "dead"
 
 [node name="spear" type="Sprite" parent="."]
 position = Vector2( -0.182144, -23.5217 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2( -2.04057, -0.680191 )
@@ -61,17 +159,35 @@ shape = SubResource( 3 )
 editor/display_folded = true
 collision_layer = 16
 collision_mask = 0
-script = ExtResource( 7 )
+script = ExtResource( 10 )
 
 [node name="shape" type="CollisionShape2D" parent="area_damage"]
 position = Vector2( -1.59921, 0.228458 )
 shape = SubResource( 4 )
 
 [node name="reload" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 3.5
 
 [node name="reload_weapon" type="Timer" parent="."]
-wait_time = 1.25
+wait_time = 2.75
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/dead = SubResource( 5 )
+
+[node name="sprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.882353 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="particles_dead" type="Particles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.75
+randomness = 1.0
+process_material = SubResource( 10 )
 [connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
 [connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
 [connection signal="timeout" from="reload_weapon" to="." method="_on_reload_weapon_timeout"]
