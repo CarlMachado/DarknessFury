@@ -39,19 +39,19 @@ func playing(delta):
 	
 	if Input.is_action_pressed("ui_right"):
 		x_dir += 1
-		$anim_sprite.play("walk")
 	if Input.is_action_pressed("ui_left"):
 		x_dir -= 1
-		$anim_sprite.play("walk")
 	if Input.is_action_pressed("ui_up"):
 		y_dir -= 1
-		$anim_sprite.play("walk")
 	if Input.is_action_pressed("ui_down"):
 		y_dir += 1
-		$anim_sprite.play("walk")
 	
 	if not Input.is_action_pressed("ui_down") and not Input.is_action_pressed("ui_up") and not Input.is_action_pressed("ui_right") and not Input.is_action_pressed("ui_left"):
 		$anim_sprite.play("idle")
+		$particles_floor.emitting = false
+	else:
+		$anim_sprite.play("walk")
+		$particles_floor.emitting = true
 	
 	if Input.is_action_just_pressed("ui_attack") and atk_status == ATTACK:
 		init_shoot_spear()
@@ -71,12 +71,15 @@ func playing(delta):
 func dead(delta):
 	if !start_dead:
 		GAME.player_live = false
+		$particles_floor.emitting = false
 		get_tree().call_group("skill_bar", "destroy")
 		GAME.restart()
+		$particles_floor.queue_free()
 		$area_hit.queue_free()
 		$shape.queue_free()
 		$spear_hand.queue_free()
 		$anim_sprite.play("dead")
+		$particles_dead.emitting = true
 		start_dead = true
 	
 	if Input.is_action_pressed("ui_accept"):
@@ -88,7 +91,7 @@ func restart():
 	queue_free()
 
 func skill():
-	if active_skill_bar:
+	if active_skill_bar:		
 		get_tree().call_group("skill_bar", "action")
 
 func time_out_boss():
@@ -102,35 +105,36 @@ func finish_skill():
 	get_tree().call_group("skill_bar", "desactive")
 
 func init_shoot_spear():
-	active_skill_bar = true
-	get_tree().call_group("skill_bar", "active")
+	if has_spear:
+		active_skill_bar = true
+		get_tree().call_group("skill_bar", "active")
 
 func shoot_spear():
-#	if has_spear and loaded and !active_skill_bar and action_answer != null:
-	get_tree().call_group("spear", "spear_false")
-	
-	var position_mouse = global_position.distance_to(get_global_mouse_position())
-	var angle = atan2(get_global_mouse_position().y - global_position.y, get_global_mouse_position().x - global_position.x)
-	var correct = 0
-	
-	if action_answer == 1: # alvo verde
-		correct = 0.2792664417184 - 0.037934649586 * log(position_mouse)
-	else:
-		pass
+	if has_spear and loaded and active_skill_bar and action_answer != null:
+		get_tree().call_group("spear", "spear_false")
 		
-	var spear_attack = PRE_SPEAR.instance()
-	spear_attack.global_position = $spear_hand.global_position / 2
-	spear_attack.rotation = global_rotation
-	spear_attack.dir = Vector2(cos(angle - correct), sin(angle - correct))
-	spear_attack.target_position = get_global_mouse_position()
-	spear_attack.type = "player_attack"
-	get_parent().add_child(spear_attack)
-	
-	finish_skill()
-	has_spear = false
-	loaded = false
-	$reload.start()
-	GAME.unload()
+		var position_mouse = global_position.distance_to(get_global_mouse_position())
+		var angle = atan2(get_global_mouse_position().y - global_position.y, get_global_mouse_position().x - global_position.x)
+		var correct = 0
+		
+		if action_answer == 1: # alvo verde
+			correct = 0.2792664417184 - 0.037934649586 * log(position_mouse)
+		else:
+			pass
+			
+		var spear_attack = PRE_SPEAR.instance()	
+		spear_attack.global_position = $spear_hand.global_position / 2
+		spear_attack.rotation = global_rotation
+		spear_attack.dir = Vector2(cos(angle - correct), sin(angle - correct))
+		spear_attack.target_position = get_global_mouse_position()
+		spear_attack.type = "player_attack"
+		get_parent().add_child(spear_attack)
+		
+		finish_skill()
+		has_spear = false
+		loaded = false
+		$reload.start()
+		GAME.unload()
 
 func take_spear():
 	get_tree().call_group("spear", "spear_true")

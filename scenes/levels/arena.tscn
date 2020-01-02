@@ -69,10 +69,10 @@ func on_unload():
 [sub_resource type="DynamicFont" id=7]
 size = 75
 font_data = ExtResource( 18 )
-
 [sub_resource type="DynamicFont" id=8]
 size = 100
 font_data = ExtResource( 18 )
+
 
 [sub_resource type="Animation" id=9]
 resource_name = "restart"
@@ -182,6 +182,7 @@ position = Vector2( 320, 176 )
 
 [node name="enemy_spawns" type="Node" parent="."]
 editor/display_folded = true
+script = ExtResource( 5 )
 
 [node name="spawn_enemy0" parent="enemy_spawns" instance=ExtResource( 13 )]
 position = Vector2( -36.0436, 292.137 )
@@ -211,6 +212,7 @@ position = Vector2( 717.716, 724.768 )
 position = Vector2( 61.1833, 801.068 )
 
 [node name="spawn_enemy9" parent="enemy_spawns" instance=ExtResource( 13 )]
+
 position = Vector2( -295.157, 668.656 )
 
 [node name="walls_area_enemy" type="Area2D" parent="."]
@@ -252,6 +254,7 @@ position = Vector2( 334.376, 14.361 )
 shape = SubResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
+editor/display_folded = true
 script = SubResource( 6 )
 
 [node name="life" parent="HUD" instance=ExtResource( 14 )]
@@ -259,6 +262,7 @@ position = Vector2( 113.1, 115.392 )
 
 [node name="skill_bar" parent="HUD" instance=ExtResource( 15 )]
 visible = false
+
 position = Vector2( 635.372, 540.768 )
 scale = Vector2( 2, 2 )
 z_index = 1001
@@ -270,6 +274,7 @@ position = Vector2( 84.2025, 121.7 )
 rotation = -1.5708
 scale = Vector2( 2.5, 2 )
 texture = ExtResource( 16 )
+
 __meta__ = {
 "_edit_lock_": true
 }
