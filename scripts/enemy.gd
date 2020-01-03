@@ -77,8 +77,9 @@ func stop_in_area():
 	homming = true
 	
 func _on_sensor_body_entered(body):
-	body_ = body
-	$sensor.queue_free()
+	if !body.has_method("boss_self"):
+		body_ = body
+		$sensor.queue_free()
 	#bodys.append(body)
 
 #func _on_sensor_body_exited(body):

@@ -41,6 +41,7 @@ func boss():
 		$walking.stop()
 
 func set_status_playing():
+	get_tree().call_group("boss", "boss_dialogue_change")
 	finish_dialog_boss = true
 	status = PLAYING
 
@@ -184,3 +185,6 @@ func on_area_destroid():
 func skill_action(action):
 	self.action_answer = action
 	shoot_spear()
+
+func player_self():
+	pass
