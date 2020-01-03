@@ -70,7 +70,6 @@ func on_unload():
 
 [sub_resource type="DynamicFont" id=7]
 size = 75
-font_data = ExtResource( 19 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 100

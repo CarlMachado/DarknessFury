@@ -1,5 +1,6 @@
 extends Control
 
+var tutorial = false
 var pre_game = preload("res://scenes/levels/initial_scene.tscn")
 var pre_restart = preload("res://scenes/levels/arena.tscn")
 
@@ -10,7 +11,13 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _process(delta):
-	pass
+	if tutorial:
+		$menu_content/tutorial_content.show()
+	else:
+		$menu_content/tutorial_content.hide()
+	
+	if Input.is_action_just_pressed("ui_cancel") and tutorial:
+		tutorial = false
 
 func _on_jogar_pressed():
 	if game != null:
@@ -21,6 +28,9 @@ func _on_jogar_pressed():
 		$menu_content.hide()
 		game = pre_game.instance()
 	get_parent().add_child(game)
+
+func _on_btn_opes_pressed():
+	tutorial = true
 
 func _on_btn_sair_pressed():
 	$menu_content/select.play()
