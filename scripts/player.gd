@@ -25,7 +25,7 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
-	if status == PLAYING or status == BOSS: 
+	if status == PLAYING: 
 		playing()
 	elif status == DEAD:
 		dead()
@@ -71,7 +71,6 @@ func playing():
 #		print(GAME.enemys_spawn)
 #		print(GAME.KILLS_STOP_SPAWN)
 		if get_tree().get_nodes_in_group("enemy").size() <= 0 and GAME.enemys_spawn >= GAME.KILLS_STOP_SPAWN:
-			print("BOSS")
 			status = BOSS
 	
 	if has_spear:

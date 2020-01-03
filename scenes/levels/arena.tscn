@@ -70,6 +70,7 @@ func on_unload():
 
 [sub_resource type="DynamicFont" id=7]
 size = 75
+font_data = ExtResource( 19 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 100
@@ -233,7 +234,6 @@ position = Vector2( 334.376, 14.361 )
 shape = SubResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
-editor/display_folded = true
 script = SubResource( 6 )
 
 [node name="life" parent="HUD" instance=ExtResource( 15 )]
