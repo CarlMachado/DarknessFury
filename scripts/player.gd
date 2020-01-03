@@ -42,6 +42,7 @@ func boss():
 
 func set_status_playing():
 	get_tree().call_group("boss", "boss_dialogue_change")
+	GAME.boss_dialogue = false
 	finish_dialog_boss = true
 	status = PLAYING
 

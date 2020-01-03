@@ -10,7 +10,7 @@ var loaded = true
 #var bodys = []
 var vel = rand_range(40, 60)
 var body_
-var boss_dialogue
+var boss_dialogue = true
 
 func _ready():
 	boss_dialogue = true
@@ -73,11 +73,9 @@ func _on_sensor_body_entered(body):
 		body_ = body
 		$sensor.queue_free()
 
-
 func _on_reload_timeout():
 	loaded = true
 	$reload.stop()
-
 
 func _on_reload_weapon_timeout():
 	$reload_weapon.stop()

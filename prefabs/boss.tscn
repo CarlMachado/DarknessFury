@@ -6,7 +6,7 @@
 [ext_resource path="res://sprites/enemy/boss/walk_2.png" type="Texture" id=4]
 [ext_resource path="res://sprites/enemy/boss/walk_3.png" type="Texture" id=5]
 [ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=6]
-[ext_resource path="res://scripts/hit.gd" type="Script" id=7]
+[ext_resource path="res://scripts/hit_boss.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 11.9337
@@ -57,7 +57,6 @@ shape = SubResource( 3 )
 [node name="area_damage" type="Area2D" parent="."]
 editor/display_folded = true
 script = ExtResource( 7 )
-health = 60
 
 [node name="shape" type="CollisionShape2D" parent="area_damage"]
 position = Vector2( -1, 0 )

@@ -14,10 +14,13 @@ var kills = 0 setget set_kills
 var kills_accumulated = 0
 var player_live
 
+var boss_dialogue
+
 func _ready():
 	randomize()
 	enemys_spawn = 0
 	player_live = true
+	boss_dialogue = true
 
 func add_kill():
 	kills += 1
