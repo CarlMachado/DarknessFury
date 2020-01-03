@@ -23,7 +23,7 @@ func _ready():
 	GAME.player_live = true
 
 func _physics_process(delta):
-	if status == PLAYING:
+	if status == PLAYING or status == BOSS: 
 		playing(delta)
 	elif status == DEAD:
 		dead(delta)
@@ -53,10 +53,10 @@ func playing(delta):
 		$anim_sprite.play("walk")
 		$particles_floor.emitting = true
 	
-	if Input.is_action_just_pressed("ui_attack") and atk_status == ATTACK:
+	if Input.is_action_just_pressed("ui_attack"):# and atk_status == ATTACK:
 		init_shoot_spear()
 		atk_status = SKILL
-	elif Input.is_action_just_pressed("ui_attack") and atk_status == SKILL: 
+	elif Input.is_action_just_pressed("ui_skill"):# and atk_status == SKILL: 
 		skill()
 		atk_status = ATTACK
 	
@@ -75,9 +75,15 @@ func dead(delta):
 		get_tree().call_group("skill_bar", "destroy")
 		GAME.restart()
 		$particles_floor.queue_free()
+		$particles_hit.queue_free()
 		$area_hit.queue_free()
 		$shape.queue_free()
 		$spear_hand.queue_free()
+#		$anim_sprite.is_playing()
+#		if $anim_sprite.is_playing("walk"):
+#			$anim_sprite.stop("walk")
+#		if $anim_sprite.is_playing("idle"):
+#			$anim_sprite.stop("idle")
 		$anim_sprite.play("dead")
 		$particles_dead.emitting = true
 		start_dead = true
@@ -96,8 +102,6 @@ func skill():
 
 func time_out_boss():
 	time_out = true
-	
-	print("time out")
 
 func finish_skill():
 	action_answer = null
@@ -120,7 +124,8 @@ func shoot_spear():
 		if action_answer == 1: # alvo verde
 			correct = 0.2792664417184 - 0.037934649586 * log(position_mouse)
 		else:
-			pass
+			correct = 0.27 - 0.037 * log(position_mouse - 15)
+			angle = atan2(get_global_mouse_position().y - global_position.y - 25, get_global_mouse_position().x - global_position.x - 25)
 			
 		var spear_attack = PRE_SPEAR.instance()	
 		spear_attack.global_position = $spear_hand.global_position / 2
@@ -151,7 +156,7 @@ func _on_reload_timeout():
 func on_area_hitted(damage, health, node):
 	life_state += 1
 	get_tree().call_group("life_HUD", "change_state", life_state)
-	pass
+	$particles_hit.emitting = true
 
 func on_area_destroid():
 	if time_out:

@@ -8,11 +8,10 @@ var enemy
 var firt_start = false
 var player_live = true
 
-onready var time_min = 4
-onready var time_max = 7
+onready var time_min = 5
+onready var time_max = 8
 
 func _ready():
-	randomize()
 #	new_position()
 	$timer_spawn.start(rand_range(time_min, time_max))
 #	$timer_spawn.start(1) 
@@ -72,8 +71,8 @@ func new_position():
 	return position
 	
 func change_timer_spawn():
-	time_min -= rand_range(0.10 / GAME.KILLS_INCREMENT, 0.50 / GAME.KILLS_INCREMENT)
-	time_max -= rand_range(0.25 / GAME.KILLS_INCREMENT, 0.75 / GAME.KILLS_INCREMENT)
+	time_min -= rand_range(0.05 / GAME.KILLS_INCREMENT, 0.25 / GAME.KILLS_INCREMENT)
+	time_max -= rand_range(0.08 / GAME.KILLS_INCREMENT, 0.25 / GAME.KILLS_INCREMENT)
 	
 	
 	

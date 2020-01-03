@@ -10,6 +10,7 @@ var vel_init = 1000
 var acell = vel_init
 var damage = 10
 var type = ""
+var max_dist = 1000 * 2
 
 onready var target
 onready var target_position
@@ -23,7 +24,7 @@ func _physics_process(delta):
 	acell = lerp(acell, MIN_SPEED, .05) 
 	translate(dir * acell * delta)
 	#if global_position.distance_to(initpos) > max_dist:
-	if acell <= DEATH_ZONE_ACELL or goalTarget():
+	if acell <= DEATH_ZONE_ACELL or goalTarget() or global_position.distance_to(initpos) > max_dist:
 		stop_projectile()
 
 func goalTarget():
