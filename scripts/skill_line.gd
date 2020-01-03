@@ -5,7 +5,7 @@ enum {ESQUERDA, DIREITA}
 onready var active_skill_bar = false
 onready var init_position = rect_global_position
 
-export var speed = 275
+export var speed = 250
 
 var size = DIREITA # 0 esquerda / 1 direita
 

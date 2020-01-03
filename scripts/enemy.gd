@@ -44,8 +44,10 @@ func _physics_process(delta):
 				get_parent().add_child(spear_attack)
 				$spear.hide()
 				loaded = false
-				$reload.start(rand_range(1.75, 2.5))
-				$reload_weapon.start(rand_range(1, 1.75))
+				$reload.start(rand_range(3.0, 3.75))
+				$reload_weapon.start(rand_range(2.25, 3.00))
+#				$reload.start(40)
+#				$reload_weapon.start(40)
 		if body != null:
 			var angle = get_angle_to(body.global_position)
 			if abs(angle) > DEATH_ZONE_ANGLE:

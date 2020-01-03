@@ -6,14 +6,14 @@ signal unload
 signal restart 
 signal generation_new_spawn
 
-const KILLS_INCREMENT = 5
+const KILLS_INCREMENT = 6
 
 var kills = 0 setget set_kills
 var kills_accumulated = 0
 var player_live = true
 
 func _ready():
-	pass 
+	randomize()
 
 func add_kill():
 	kills += 1
