@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/initial_scene.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/tile_arena.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://prefabs/mouse_cross.tscn" type="PackedScene" id=8]
 [ext_resource path="res://fonts/ingame.tres" type="DynamicFont" id=9]
 [ext_resource path="res://prefabs/initial_dialogues.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sounds/menu/change.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/celebration.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -53,3 +55,11 @@ valign = 1
 autowrap = true
 
 [node name="initial_dialogues" parent="content" instance=ExtResource( 10 )]
+
+[node name="next" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -15.0
+
+[node name="celebration" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -25.0

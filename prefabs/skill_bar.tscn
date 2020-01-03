@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/skill_bar.gd" type="Script" id=1]
 [ext_resource path="res://scripts/skill_line.gd" type="Script" id=2]
+[ext_resource path="res://sounds/menu/change.wav" type="AudioStream" id=3]
 
 [node name="skill_bar" type="Node2D" groups=[
 "skill_bar",
@@ -33,3 +34,8 @@ margin_bottom = 24.0
 rect_min_size = Vector2( -10, -10 )
 color = Color( 1, 1, 1, 0.686275 )
 script = ExtResource( 2 )
+
+[node name="start" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+attenuation = 0.153893

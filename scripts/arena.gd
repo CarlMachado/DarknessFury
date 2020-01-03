@@ -10,6 +10,9 @@ var dialog = 0
 
 # warning-ignore:unused_argument
 func _process(delta):
+	if not $intimidation.playing:
+		$intimidation.play()
+	
 	if boss:
 		frames += 1
 		if stage == 0:
@@ -61,38 +64,47 @@ func _process(delta):
 				$anim_boss/dialogues/speak_ballon_1.show()
 				init_dialog = true
 			if Input.is_action_just_pressed("ui_accept") and dialog == 0:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_1.hide()
 				$anim_boss/dialogues/speak_ballon_2.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 1:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_2.hide()
 				$anim_boss/dialogues/speak_ballon_3.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 2:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_3.hide()
 				$anim_boss/dialogues/speak_ballon_4.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 3:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_4.hide()
 				$anim_boss/dialogues/speak_ballon_5.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 4:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_5.hide()
 				$anim_boss/dialogues/speak_ballon_6.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 5:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_6.hide()
 				$anim_boss/dialogues/speak_ballon_7.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 6:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_7.hide()
 				$anim_boss/dialogues/speak_ballon_8.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 7:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_8.hide()
 				$anim_boss/dialogues/speak_ballon_9.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 8:
+				$next.play()
 				$anim_boss/dialogues/speak_ballon_9.hide()
 				boss = false
 				stage = -1

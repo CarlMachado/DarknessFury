@@ -96,8 +96,10 @@ func _on_reload_weapon_timeout():
 	$spear.show()
 	
 func on_area_hitted():
+	$hurt.play()
 	pass
 
 func on_area_destroid():
+	$death.play()
 	autodestroy()
 	pass
