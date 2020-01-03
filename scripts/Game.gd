@@ -7,7 +7,7 @@ signal restart
 signal generation_new_spawn
 
 const KILLS_INCREMENT = 6
-const KILLS_STOP_SPAWN = 4
+const KILLS_STOP_SPAWN = 1
 
 var enemys_spawn
 var kills = 0 setget set_kills
