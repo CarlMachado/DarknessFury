@@ -1,27 +1,40 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://sprites/enemy/boss/walk_0.png" type="Texture" id=1]
-[ext_resource path="res://sprites/enemy/boss/walk_1.png" type="Texture" id=2]
-[ext_resource path="res://sprites/enemy/boss/walk_2.png" type="Texture" id=3]
-[ext_resource path="res://sprites/enemy/boss/walk_3.png" type="Texture" id=4]
+[ext_resource path="res://scripts/boss.gd" type="Script" id=1]
+[ext_resource path="res://sprites/enemy/boss/walk_0.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy/boss/walk_1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/boss/walk_2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemy/boss/walk_3.png" type="Texture" id=5]
+[ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=6]
+[ext_resource path="res://scripts/hit.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 11.9337
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
 } ]
 
-[node name="boss" type="Node2D"]
+[sub_resource type="CircleShape2D" id=3]
+radius = 1546.78
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 10.7084
+height = 12.0494
+
+[node name="boss" type="KinematicBody2D" groups=[
+"boss",
+]]
+script = ExtResource( 1 )
 
 [node name="col_shape" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 0 )
@@ -30,3 +43,31 @@ shape = SubResource( 1 )
 [node name="anim_sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "walk"
+
+[node name="spear" type="Sprite" parent="."]
+position = Vector2( 0.252087, -16.4629 )
+texture = ExtResource( 6 )
+
+[node name="sensor" type="Area2D" parent="."]
+editor/display_folded = true
+
+[node name="shape" type="CollisionShape2D" parent="sensor"]
+shape = SubResource( 3 )
+
+[node name="area_damage" type="Area2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 7 )
+health = 60
+
+[node name="shape" type="CollisionShape2D" parent="area_damage"]
+position = Vector2( -1, 0 )
+shape = SubResource( 4 )
+
+[node name="reload" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="reload_weapon" type="Timer" parent="."]
+wait_time = 0.75
+[connection signal="body_entered" from="sensor" to="." method="_on_sensor_body_entered"]
+[connection signal="timeout" from="reload" to="." method="_on_reload_timeout"]
+[connection signal="timeout" from="reload_weapon" to="." method="_on_reload_weapon_timeout"]
