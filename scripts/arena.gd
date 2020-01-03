@@ -29,7 +29,7 @@ func _process(delta):
 		if stage == 2:
 			$anim_boss/boss/anim_sprite.play("walk")
 			$anim_boss/boss.global_position.y += 1
-			if frames > 250:
+			if frames > 150:
 				$anim_boss/boss/anim_sprite.play("idle")
 				frames = 0
 				stage += 1
@@ -51,6 +51,7 @@ func _process(delta):
 		if stage == 5:
 			if not init_dialog:
 				$anim_boss/dialogues/speak_ballon_1.show()
+				init_dialog = true
 			if Input.is_action_just_pressed("ui_accept") and dialog == 0:
 				$anim_boss/dialogues/speak_ballon_1.hide()
 				$anim_boss/dialogues/speak_ballon_2.show()
@@ -68,21 +69,26 @@ func _process(delta):
 				$anim_boss/dialogues/speak_ballon_5.show()
 				dialog += 1
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 4:
-				$anim_boss/dialogues/speak_ballon_4.hide()
-				$anim_boss/dialogues/speak_ballon_5.show()
-				dialog += 1
-			elif Input.is_action_just_pressed("ui_accept") and dialog == 5:
 				$anim_boss/dialogues/speak_ballon_5.hide()
 				$anim_boss/dialogues/speak_ballon_6.show()
 				dialog += 1
-			elif Input.is_action_just_pressed("ui_accept") and dialog == 6:
+			elif Input.is_action_just_pressed("ui_accept") and dialog == 5:
 				$anim_boss/dialogues/speak_ballon_6.hide()
 				$anim_boss/dialogues/speak_ballon_7.show()
 				dialog += 1
-			elif Input.is_action_just_pressed("ui_accept") and dialog == 7:
+			elif Input.is_action_just_pressed("ui_accept") and dialog == 6:
 				$anim_boss/dialogues/speak_ballon_7.hide()
+				$anim_boss/dialogues/speak_ballon_8.show()
+				dialog += 1
+			elif Input.is_action_just_pressed("ui_accept") and dialog == 7:
+				$anim_boss/dialogues/speak_ballon_8.hide()
+				$anim_boss/dialogues/speak_ballon_9.show()
+				dialog += 1
+			elif Input.is_action_just_pressed("ui_accept") and dialog == 8:
+				$anim_boss/dialogues/speak_ballon_9.hide()
 				boss = false
 				stage = -1
+				get_tree().call_group("player", "set_status_playing")
 
 func init_boss():
 	boss = true

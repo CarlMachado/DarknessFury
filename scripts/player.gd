@@ -3,6 +3,7 @@ extends KinematicBody2D
 const PRE_SPEAR = preload("res://prefabs/spear_hand.tscn")
 const SPEED = 200
 
+var finish_dialog_boss = false
 var has_spear = false
 var loaded = true
 var active_skill_bar = false
@@ -25,7 +26,7 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _physics_process(delta):
-	if status == PLAYING or status == BOSS: 
+	if status == PLAYING: 
 		playing()
 	elif status == DEAD:
 		dead()
@@ -34,6 +35,14 @@ func _physics_process(delta):
 
 func boss():
 	get_tree().call_group("arena", "init_boss")
+	$anim_sprite.play("idle")
+	$particles_floor.emitting = false
+	if $walking.playing:
+		$walking.stop()
+
+func set_status_playing():
+	finish_dialog_boss = true
+	status = PLAYING
 
 func playing():
 	var x_dir = 0
@@ -66,7 +75,7 @@ func playing():
 		skill()
 		atk_status = ATTACK
 	
-	if status != BOSS:
+	if status != BOSS and not finish_dialog_boss:
 #		print(get_tree().get_nodes_in_group("enemy").size())
 #		print(GAME.enemys_spawn)
 #		print(GAME.KILLS_STOP_SPAWN)

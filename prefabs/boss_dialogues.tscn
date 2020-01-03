@@ -144,8 +144,7 @@ margin_top = 217.0
 margin_right = 363.0
 margin_bottom = 313.0
 custom_fonts/font = ExtResource( 2 )
-text = "Você é um ser imortal!
-Bom, era né..."
+text = "Você já se esqueceu toda a dor e sofrimento que cousou a esse reino?"
 valign = 1
 autowrap = true
 
@@ -176,7 +175,8 @@ margin_top = 217.0
 margin_right = 363.0
 margin_bottom = 313.0
 custom_fonts/font = ExtResource( 2 )
-text = "Nossos magos descobriram um novo feitiço capaz de te deter!"
+text = "Você é um ser imortal!
+Bom, era né..."
 valign = 1
 autowrap = true
 
@@ -196,18 +196,18 @@ texture = ExtResource( 4 )
 flip_h = true
 
 [node name="speak_ballon_7" type="Sprite" parent="."]
+editor/display_folded = true
 visible = false
 texture = ExtResource( 1 )
 centered = false
 
 [node name="dialogue" type="Label" parent="speak_ballon_7"]
-margin_left = 277.0
+margin_left = 201.0
 margin_top = 217.0
-margin_right = 457.0
+margin_right = 363.0
 margin_bottom = 313.0
 custom_fonts/font = ExtResource( 2 )
-text = "Já que é assim... 
-Boa sorte tentando!"
+text = "Nossos magos descobriram um novo feitiço capaz de te deter!"
 valign = 1
 autowrap = true
 
@@ -222,5 +222,68 @@ valign = 1
 autowrap = true
 
 [node name="hero_face" type="Sprite" parent="speak_ballon_7"]
+position = Vector2( 406.839, 266.008 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="speak_ballon_8" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_8"]
+margin_left = 201.0
+margin_top = 217.0
+margin_right = 363.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Prepare-se para morrer!!!"
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_8"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_8"]
+position = Vector2( 406.839, 266.008 )
+texture = ExtResource( 4 )
+flip_h = true
+
+[node name="speak_ballon_9" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="dialogue" type="Label" parent="speak_ballon_9"]
+margin_left = 277.0
+margin_top = 217.0
+margin_right = 457.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 2 )
+text = "Já que é assim... 
+Boa sorte tentando!"
+valign = 1
+autowrap = true
+
+[node name="next" type="Label" parent="speak_ballon_9"]
+margin_left = 415.421
+margin_top = 298.579
+margin_right = 443.421
+margin_bottom = 312.579
+custom_fonts/font = ExtResource( 3 )
+text = "ENTER"
+valign = 1
+autowrap = true
+
+[node name="hero_face" type="Sprite" parent="speak_ballon_9"]
 position = Vector2( 230.839, 266.008 )
 texture = ExtResource( 5 )
