@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://sprites/main_menu/main_menu_background.png" type="Texture" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://fonts/button_menu_normal.tres" type="StyleBox" id=7]
 [ext_resource path="res://fonts/pixel_font.tres" type="DynamicFont" id=8]
 [ext_resource path="res://sprites/main_menu/tutorial.png" type="Texture" id=9]
-[ext_resource path="res://fonts/pixelfont.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://fonts/main_menu_tutorial.tres" type="DynamicFont" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -28,10 +28,6 @@
 [sub_resource type="StyleBoxEmpty" id=8]
 
 [sub_resource type="StyleBoxEmpty" id=9]
-
-[sub_resource type="DynamicFont" id=10]
-size = 60
-font_data = ExtResource( 10 )
 
 [node name="main_menu" type="Control" groups=[
 "Menu",
@@ -137,7 +133,7 @@ margin_left = 333.577
 margin_top = 121.301
 margin_right = 1007.58
 margin_bottom = 171.301
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = ExtResource( 10 )
 text = "Use as teclas W A S D para movimentar-se."
 
 [node name="mouse" type="Label" parent="menu_content/tutorial_content"]
@@ -145,7 +141,7 @@ margin_left = 679.984
 margin_top = 284.59
 margin_right = 1353.98
 margin_bottom = 334.59
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = ExtResource( 10 )
 text = "Use M2 para atirar."
 
 [node name="space" type="Label" parent="menu_content/tutorial_content"]
@@ -153,17 +149,17 @@ margin_left = 273.865
 margin_top = 497.607
 margin_right = 947.865
 margin_bottom = 653.607
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = ExtResource( 10 )
 text = "Use a tecla espaço para acertar o tiro
 quando a skillbar estiver no meio.
 "
 
 [node name="esc" type="Label" parent="menu_content/tutorial_content"]
-margin_left = 1200.49
-margin_top = -1.24304
-margin_right = 1874.49
-margin_bottom = 154.757
-custom_fonts/font = SubResource( 10 )
+margin_left = 1210.01
+margin_top = 2.83809
+margin_right = 1884.01
+margin_bottom = 158.838
+custom_fonts/font = ExtResource( 10 )
 text = "ESC
 "
 

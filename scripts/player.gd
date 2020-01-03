@@ -34,6 +34,7 @@ func _physics_process(delta):
 		boss()
 
 func boss():
+	get_tree().call_group("skill_bar", "destroy")
 	get_tree().call_group("arena", "init_boss")
 	$anim_sprite.play("idle")
 	$particles_floor.emitting = false
@@ -68,7 +69,7 @@ func playing():
 		$anim_sprite.play("walk")
 		$particles_floor.emitting = true
 		if not $walking.playing:
-			$walking.play(18.0)
+			$walking.play(0)
 	
 	if Input.is_action_just_pressed("ui_attack"):# and atk_status == ATTACK:
 		init_shoot_spear()
@@ -176,11 +177,13 @@ func _on_reload_timeout():
 	GAME.reload(loaded, has_spear)
 	
 func on_area_hitted():
+	$hurt.play()
 	life_state += 1
 	get_tree().call_group("life_HUD", "change_state", life_state)
 	$particles_hit.emitting = true
 
 func on_area_destroid():
+	$death.play()
 	status = DEAD
 	
 func skill_action(action):
