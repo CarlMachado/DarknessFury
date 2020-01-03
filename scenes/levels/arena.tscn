@@ -69,11 +69,11 @@ func on_unload():
 
 [sub_resource type="DynamicFont" id=7]
 size = 75
-font_data = ExtResource( 19 )
+font_data = ExtResource( 18 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 100
-font_data = ExtResource( 19 )
+font_data = ExtResource( 18 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "restart"
@@ -104,14 +104,15 @@ tracks/1/keys = {
 "values": [ Color( 0, 0, 0, 0.882353 ), Color( 0, 0, 0, 0.490196 ) ]
 }
 
-[node name="arena" type="Node2D"]
+[node name="arena" type="Node2D" groups=[
+"arena",
+]]
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 
 [node name="play_time" type="Timer" parent="." groups=[
 "arena",
 ]]
-wait_time = 30.0
 autostart = true
 
 [node name="mouse_cross" parent="." instance=ExtResource( 2 )]
