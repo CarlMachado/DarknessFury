@@ -69,11 +69,10 @@ func on_unload():
 
 [sub_resource type="DynamicFont" id=7]
 size = 75
-font_data = ExtResource( 18 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 100
-font_data = ExtResource( 18 )
+font_data = ExtResource( 19 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "restart"
@@ -113,6 +112,7 @@ script = ExtResource( 1 )
 [node name="play_time" type="Timer" parent="." groups=[
 "arena",
 ]]
+wait_time = 60.0
 autostart = true
 
 [node name="mouse_cross" parent="." instance=ExtResource( 2 )]
@@ -286,13 +286,16 @@ __meta__ = {
 }
 
 [node name="restart" type="Label" parent="HUD"]
-modulate = Color( 0, 0, 0, 0.662079 )
+visible = false
+modulate = Color( 0, 0, 0, 0.882353 )
 margin_left = 306.926
 margin_top = 268.019
 margin_right = 976.926
 margin_bottom = 350.019
 custom_fonts/font = SubResource( 8 )
-text = "PRESS ENTER TO RESTART"
+text = "PRESS ENTER TO RESTART
+"
+uppercase = true
 __meta__ = {
 "_edit_lock_": true
 }

@@ -29,7 +29,7 @@ func _physics_process(delta):
 
 func goalTarget():
 	if target != null:
-		return global_position.distance_to(target_position) <= rand_range(10, 60)
+		return global_position.distance_to(target_position) <= rand_range(10, 50)
 	else:
 		return false
 
