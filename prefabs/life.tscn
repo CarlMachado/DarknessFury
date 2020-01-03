@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/life.gd" type="Script" id=1]
-[ext_resource path="res://sprites/player/walk_0.png" type="Texture" id=2]
-[ext_resource path="res://sprites/player/raise_3.png" type="Texture" id=3]
-[ext_resource path="res://sprites/player/raise_1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/player/raise_0.png" type="Texture" id=5]
+[ext_resource path="res://sprites/hero_face.png" type="Texture" id=2]
 
 [node name="life" type="Node2D" groups=[
 "life_HUD",
@@ -16,26 +13,19 @@ __meta__ = {
 }
 
 [node name="sprite_state1" type="Sprite" parent="."]
-scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 2 )
 
 [node name="sprite_state2" type="Sprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.686275 )
-position = Vector2( -32.4464, 2.08071 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="sprite_state3" type="Sprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.490196 )
-position = Vector2( -14.9061, 6.37891 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 
 [node name="sprite_state4" type="Sprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.294118 )
-position = Vector2( 30.1927, 7.54036 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )

@@ -13,6 +13,10 @@ func _process(delta):
 	if boss:
 		frames += 1
 		if stage == 0:
+			$anim_boss/arena_entrance/block_floor.show()
+			$anim_boss/arena_entrance/block_floor2.show()
+			$anim_boss/arena_entrance/castle.show()
+			$anim_boss/arena_entrance/castle2.show()
 			$anim_boss/doors/left_door_midle.show()
 			$anim_boss/doors/right_door_midle.show()
 			if frames > 60:
@@ -28,8 +32,8 @@ func _process(delta):
 		
 		if stage == 2:
 			$anim_boss/boss/anim_sprite.play("walk")
-			$anim_boss/boss.global_position.y += 1
-			if frames > 150:
+			$anim_boss/boss.translate(Vector2(0, 1))
+			if frames > 130:
 				$anim_boss/boss/anim_sprite.play("idle")
 				frames = 0
 				stage += 1
@@ -44,6 +48,10 @@ func _process(delta):
 		if stage == 4:
 			$anim_boss/doors/left_door_midle.hide()
 			$anim_boss/doors/right_door_midle.hide()
+			$anim_boss/arena_entrance/block_floor.hide()
+			$anim_boss/arena_entrance/block_floor2.hide()
+			$anim_boss/arena_entrance/castle.hide()
+			$anim_boss/arena_entrance/castle2.hide()
 			if frames > 60:
 				frames = 0
 				stage += 1
