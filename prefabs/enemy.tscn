@@ -2,12 +2,12 @@
 
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/enemy/walk_0.png" type="Texture" id=2]
-[ext_resource path="res://sprites/enemy/walk_1.png" type="Texture" id=3]
-[ext_resource path="res://sprites/enemy/walk_2.png" type="Texture" id=4]
-[ext_resource path="res://sprites/enemy/walk_3.png" type="Texture" id=5]
-[ext_resource path="res://sprites/enemy/raise_2.png" type="Texture" id=6]
-[ext_resource path="res://sprites/enemy/raise_1.png" type="Texture" id=7]
-[ext_resource path="res://sprites/enemy/raise_0.png" type="Texture" id=8]
+[ext_resource path="res://sprites/enemy/raise_2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy/raise_1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemy/raise_0.png" type="Texture" id=5]
+[ext_resource path="res://sprites/enemy/walk_1.png" type="Texture" id=6]
+[ext_resource path="res://sprites/enemy/walk_2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/enemy/walk_3.png" type="Texture" id=8]
 [ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=9]
 [ext_resource path="res://scripts/hit.gd" type="Script" id=10]
 
@@ -19,14 +19,14 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "walk",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "dead",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.5, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
+"values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:position")

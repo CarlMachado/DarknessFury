@@ -3,7 +3,6 @@ extends KinematicBody2D
 const PRE_SPEAR = preload("res://prefabs/spear_hand.tscn")
 const SPEED = 200
 
-var time_out = false
 var has_spear = false
 var loaded = true
 var active_skill_bar = false
@@ -18,22 +17,25 @@ enum {PLAYING, DEAD, BOSS, RESTART}
 var status = PLAYING
 
 func _ready():
-	$area_hit.connect("hitted", self, "on_area_hitted")
-	$area_hit.connect("destroid", self, "on_area_destroid")
+	# warning-ignore:return_value_discarded
+	$area_hit.connect("hitted", self, "on_area_hitted") 
+	# warning-ignore:return_value_discarded
+	$area_hit.connect("destroid", self, "on_area_destroid") 
 	GAME.player_live = true
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	if status == PLAYING or status == BOSS: 
-		playing(delta)
+		playing()
 	elif status == DEAD:
-		dead(delta)
+		dead()
 	elif status == BOSS:
-		boss(delta)
+		boss()
 
-func boss(delta):
+func boss():
 	get_tree().call_group("arena", "init_boss")
 
-func playing(delta):
+func playing():
 	var x_dir = 0
 	var y_dir = 0
 	
@@ -64,15 +66,23 @@ func playing(delta):
 		skill()
 		atk_status = ATTACK
 	
+	if status != BOSS:
+#		print(get_tree().get_nodes_in_group("enemy").size())
+#		print(GAME.enemys_spawn)
+#		print(GAME.KILLS_STOP_SPAWN)
+		if get_tree().get_nodes_in_group("enemy").size() <= 0 and GAME.enemys_spawn >= GAME.KILLS_STOP_SPAWN:
+			print("BOSS")
+			status = BOSS
+	
 	if has_spear:
 		$spear_hand.show()
 	else:
 		$spear_hand.hide()
 	
-	look_at(get_global_mouse_position())
+	look_at(get_global_mouse_position()) # warning-ignore:return_value_discarded
 	move_and_slide(Vector2(x_dir, y_dir) * SPEED)
 	
-func dead(delta):
+func dead():
 	if !start_dead:
 		GAME.player_live = false
 		$particles_floor.emitting = false
@@ -104,9 +114,6 @@ func restart():
 func skill():
 	if active_skill_bar:		
 		get_tree().call_group("skill_bar", "action")
-
-func time_out_boss():
-	time_out = true
 
 func finish_skill():
 	action_answer = null
@@ -158,17 +165,13 @@ func _on_reload_timeout():
 	loaded = true
 	GAME.reload(loaded, has_spear)
 	
-func on_area_hitted(damage, health, node):
+func on_area_hitted():
 	life_state += 1
 	get_tree().call_group("life_HUD", "change_state", life_state)
 	$particles_hit.emitting = true
 
 func on_area_destroid():
-	if time_out:
-		print("BOSS")
-		status = BOSS
-	else:
-		status = DEAD
+	status = DEAD
 	
 func skill_action(action):
 	self.action_answer = action
