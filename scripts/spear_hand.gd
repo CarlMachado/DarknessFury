@@ -50,5 +50,5 @@ func _on_spear_hand_area_entered(area):
 	var area_layer = area.get_collision_layer()
 	if (area_layer == 32 and type == "enemy_attack") or (area_layer == 16 and type == "player_attack"):
 		if area.has_method("hit"):
-			area.hit(damage, self) 
+			area.hit(damage) 
 			auto_destroy()

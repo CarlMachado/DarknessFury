@@ -39,9 +39,10 @@ extents = Vector2( 0.830383, 15.5794 )
 script/source = "extends CanvasLayer
 
 func _ready():
-	GAME.connect(\"kills_changed\", self, \"on_kills_changed\")
-	GAME.connect(\"reload\", self, \"on_reload\")
-	GAME.connect(\"unload\", self, \"on_unload\")
+	# warning-ignore:return_value_discarded
+	GAME.connect(\"kills_changed\", self, \"on_kills_changed\") # warning-ignore:return_value_discarded
+	GAME.connect(\"reload\", self, \"on_reload\") # warning-ignore:return_value_discarded
+	GAME.connect(\"unload\", self, \"on_unload\") # warning-ignore:return_value_discarded
 	GAME.connect(\"restart\", self, \"restart\")
 	$restart.hide()
 	write_kill()
@@ -108,12 +109,6 @@ tracks/1/keys = {
 ]]
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
-
-[node name="play_time" type="Timer" parent="." groups=[
-"arena",
-]]
-wait_time = 60.0
-autostart = true
 
 [node name="mouse_cross" parent="." instance=ExtResource( 2 )]
 z_index = 1000
@@ -238,6 +233,7 @@ position = Vector2( 334.376, 14.361 )
 shape = SubResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
+editor/display_folded = true
 script = SubResource( 6 )
 
 [node name="life" parent="HUD" instance=ExtResource( 15 )]
@@ -302,5 +298,4 @@ __meta__ = {
 
 [node name="anim_restart" type="AnimationPlayer" parent="HUD"]
 anims/restart = SubResource( 9 )
-[connection signal="timeout" from="play_time" to="." method="_on_play_time_timeout"]
 [connection signal="body_entered" from="walls_area_enemy" to="enemy_spawns/spawn_enemy0" method="_on_walls_area_body_entered"]

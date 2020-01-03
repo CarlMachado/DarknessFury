@@ -9,6 +9,7 @@ func _ready():
 	$sprite_state3.hide()
 	$sprite_state4.hide()
 
+# warning-ignore:unused_argument
 func _process(delta):
 	pass
 	

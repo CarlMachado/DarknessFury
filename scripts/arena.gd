@@ -8,6 +8,7 @@ var stage = 0
 var init_dialog = false
 var dialog = 0
 
+# warning-ignore:unused_argument
 func _process(delta):
 	if boss:
 		frames += 1
@@ -85,7 +86,3 @@ func _process(delta):
 
 func init_boss():
 	boss = true
-
-func _on_play_time_timeout():
-	get_tree().call_group("player", "time_out_boss")
-	$play_time.queue_free()

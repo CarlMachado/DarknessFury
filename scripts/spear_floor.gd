@@ -3,7 +3,6 @@ extends Area2D
 var has_spear = false
 
 func _ready():
-	yield(get_tree().create_timer(0.5), "timeout")
 	$anim.play("destroy_spear")
 
 func spear_true():

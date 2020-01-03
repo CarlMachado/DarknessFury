@@ -10,10 +10,13 @@ var alive = true
 var loaded = true
 #var bodys = []
 var vel = rand_range(40, 60)
-var body 
+var body_
 
 func _ready():
-	$area_damage.connect("hitted", self, "on_area_hitted")
+	add_to_group("enemy")
+	GAME.enemys_spawn += 1
+	# warning-ignore:return_value_discarded
+	$area_damage.connect("hitted", self, "on_area_hitted") # warning-ignore:return_value_discarded
 	$area_damage.connect("destroid", self, "on_area_destroid")
 	yield(get_tree().create_timer(60), "timeout")
 	homming = true
@@ -21,16 +24,17 @@ func _ready():
 func _physics_process(delta):
 	if alive:
 		if !GAME.player_live:
-			body = null
+			body_ = null
 		
 		if !homming:
+			# warning-ignore:return_value_discarded
 			move_and_slide(Vector2(cos(rotation), sin(rotation)) * vel)
 		else:
-			if loaded and body != null and GAME.player_live:
+			if loaded and body_ != null and GAME.player_live:
 				var correct	
-				if global_position.distance_to(body.global_position) > 300:
+				if global_position.distance_to(body_.global_position) > 300:
 					correct = 0.05
-				elif global_position.distance_to(body.global_position) > 600:
+				elif global_position.distance_to(body_.global_position) > 600:
 					correct = 0.020
 				else:
 					correct = 0.175
@@ -38,7 +42,7 @@ func _physics_process(delta):
 				spear_attack.global_position = $spear.global_position
 				spear_attack.rotation = global_rotation
 				spear_attack.dir = Vector2(cos(rotation + correct), sin(rotation + correct))
-				spear_attack.target = body
+				spear_attack.target = body_
 				spear_attack.type = "enemy_attack"
 				spear_attack.scale = spear_attack.scale * 2
 				get_parent().add_child(spear_attack)
@@ -48,8 +52,8 @@ func _physics_process(delta):
 				$reload_weapon.start(rand_range(2.25, 3.00))
 #				$reload.start(40)
 #				$reload_weapon.start(40)
-		if body != null:
-			var angle = get_angle_to(body.global_position)
+		if body_ != null:
+			var angle = get_angle_to(body_.global_position)
 			if abs(angle) > DEATH_ZONE_ANGLE:
 				rotation += sign(angle) * delta * ROT_VEL
 	
@@ -63,16 +67,17 @@ func autodestroy():
 	$reload_weapon.queue_free()
 	$anim_sprite.queue_free()
 	$spear.queue_free()
-	$anim.play("dead")
 	$particles_dead.emitting = true
+	$anim.play("dead")
 	yield($anim, "animation_finished")
+	remove_from_group("enemy")
 	queue_free()
 
 func stop_in_area():
 	homming = true
 	
 func _on_sensor_body_entered(body):
-	self.body = body
+	body_ = body
 	$sensor.queue_free()
 	#bodys.append(body)
 
@@ -89,7 +94,7 @@ func _on_reload_weapon_timeout():
 	$reload_weapon.stop()
 	$spear.show()
 	
-func on_area_hitted(damage, health, node):
+func on_area_hitted():
 	pass
 
 func on_area_destroid():

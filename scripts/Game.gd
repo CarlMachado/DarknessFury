@@ -7,13 +7,17 @@ signal restart
 signal generation_new_spawn
 
 const KILLS_INCREMENT = 6
+const KILLS_STOP_SPAWN = 4
 
+var enemys_spawn
 var kills = 0 setget set_kills
 var kills_accumulated = 0
-var player_live = true
+var player_live
 
 func _ready():
 	randomize()
+	enemys_spawn = 0
+	player_live = true
 
 func add_kill():
 	kills += 1
@@ -24,6 +28,7 @@ func add_kill():
 	emit_signal("kills_changed")
 
 func set_kills(val):
+	val = 0
 	print("Can't Write Kill. Use funtion add_kill")
 
 func reload(loaded, has_spear):

@@ -1,12 +1,12 @@
 extends Area2D
 
-signal hitted(damage, health, node)
+signal hitted()
 signal destroid()
 
 export var health = 30
 
-func hit(damage, node):
+func hit(damage):
 	health -= damage
-	emit_signal("hitted", damage, health, node)
+	emit_signal("hitted")
 	if health <= 0:
 		emit_signal("destroid")

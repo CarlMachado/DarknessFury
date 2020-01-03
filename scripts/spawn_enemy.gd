@@ -6,16 +6,18 @@ export(int, "Cima", "Direita", "Baixo", "Esquerda") var side = 0
 
 var enemy
 var firt_start = false
-var player_live = true
+var player_live
 
 onready var time_min = 5
 onready var time_max = 8
 
 func _ready():
+	player_live = true
 #	new_position()
 	$timer_spawn.start(rand_range(time_min, time_max))
 #	$timer_spawn.start(1) 
 	
+# warning-ignore:unused_argument
 func _process(delta):
 	if enemy == null and !firt_start:
 		enemy = PRE_ENEMY.instance() 
@@ -26,8 +28,10 @@ func _process(delta):
 		$timer_spawn.stop()
 
 func dead_enemy():
-	if enemy != null:
-		if !enemy.alive and GAME.player_live:
+	if enemy != null and GAME.player_live and GAME.enemys_spawn <= GAME.KILLS_STOP_SPAWN:
+#		print("SPAWN ENEMY: " + str(GAME.enemys_spawn))
+#		print("KILLS_STOP_SPAWN: " + str(GAME.KILLS_STOP_SPAWN))
+		if !enemy.alive:
 			enemy = null
 			new_position()
 			$timer_spawn.start(rand_range(time_min, time_max))
@@ -44,10 +48,10 @@ func _on_walls_area_body_entered(body):
 		body.stop_in_area()
 
 func new_position():
-	var tile_size = 32
 	var side_coords = [] #x_min, x_max, y_min, y_max
 	side = randi() % 4
 	
+#	var tile_size = 32
 #	if side == 0: # Cima
 #		side_coords = [0 * tile_size, 19 * tile_size, -5 * tile_size, 0 * tile_size]
 #	elif side == 1: # Direita
