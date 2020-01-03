@@ -3,7 +3,8 @@ extends Area2D
 var has_spear = false
 
 func _ready():
-	pass
+	yield(get_tree().create_timer(0.5), "timeout")
+	$anim.play("destroy_spear")
 
 func spear_true():
 	has_spear = true
@@ -17,8 +18,8 @@ func _on_spear_body_entered(body):
 		get_tree().call_group("player", "take_spear")
 		queue_free()
 
-func _on_timer_timeout():
-	queue_free()
+#func _on_timer_timeout():
+#	queue_free()
 
-func _on_timer_dead_timeout():
+func _on_timer_dead_timeout():	
 	queue_free()

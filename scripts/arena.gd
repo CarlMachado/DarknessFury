@@ -88,3 +88,4 @@ func init_boss():
 
 func _on_play_time_timeout():
 	get_tree().call_group("player", "time_out_boss")
+	$play_time.queue_free()

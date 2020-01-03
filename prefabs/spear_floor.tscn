@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/spear_floor.gd" type="Script" id=1]
 [ext_resource path="res://sprites/weapon/spear_floor.png" type="Texture" id=2]
@@ -6,6 +6,22 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.72758
 height = 14.4005
+
+[sub_resource type="Animation" id=2]
+resource_name = "destroy_spear"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="spear_floor" type="Area2D" groups=[
 "spear",
@@ -24,5 +40,8 @@ texture = ExtResource( 2 )
 [node name="timer_dead" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/destroy_spear = SubResource( 2 )
 [connection signal="body_entered" from="." to="." method="_on_spear_body_entered"]
 [connection signal="timeout" from="timer_dead" to="." method="_on_timer_dead_timeout"]

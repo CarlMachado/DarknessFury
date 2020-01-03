@@ -83,6 +83,7 @@ func dead(delta):
 		$area_hit.queue_free()
 		$shape.queue_free()
 		$spear_hand.queue_free()
+		$walking.queue_free()
 #		$anim_sprite.is_playing()
 #		if $anim_sprite.is_playing("walk"):
 #			$anim_sprite.stop("walk")
@@ -164,6 +165,7 @@ func on_area_hitted(damage, health, node):
 
 func on_area_destroid():
 	if time_out:
+		print("BOSS")
 		status = BOSS
 	else:
 		status = DEAD
