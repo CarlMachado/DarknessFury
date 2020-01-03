@@ -3,6 +3,7 @@ extends Area2D
 var has_spear = false
 
 func _ready():
+	$hit_floor.play()
 	$anim.play("destroy_spear")
 
 func spear_true():

@@ -46,12 +46,15 @@ func dialogue_animation():
 		stage = 666
 	
 	if Input.is_action_just_pressed("ui_accept") and $content/initial_dialogues/speak_ballon_1.is_visible_in_tree():
+		$next.play()
 		$content/initial_dialogues/speak_ballon_1.hide()
 		$content/initial_dialogues/speak_ballon_2.show()
 	elif Input.is_action_just_pressed("ui_accept") and $content/initial_dialogues/speak_ballon_2.is_visible_in_tree():
+		$next.play()
 		$content/initial_dialogues/speak_ballon_2.hide()
 		$content/initial_dialogues/speak_ballon_3.show()
 	elif Input.is_action_just_pressed("ui_accept") and $content/initial_dialogues/speak_ballon_3.is_visible_in_tree():
+		$next.play()
 		anim = false
 		scale = scale / 2
 		$content.queue_free()
@@ -59,5 +62,7 @@ func dialogue_animation():
 
 func _process(delta):
 	if(anim):
+		if not $celebration.playing:
+			$celebration.play()
 		initial_animation()
 		dialogue_animation()

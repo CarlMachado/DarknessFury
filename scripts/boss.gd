@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const PRE_SPEAR = preload("res://prefabs/spear_hand.tscn")
+const PRE_SPEAR = preload("res://prefabs/spear_hand_boss.tscn")
 const DEATH_ZONE_ANGLE = .01
 const ROT_VEL = 1
 
@@ -40,8 +40,8 @@ func _physics_process(delta):
 			get_parent().add_child(spear_attack)
 			$spear.hide()
 			loaded = false
-			$reload.start(rand_range(1, 1.5)) # atirar
-			$reload_weapon.start(rand_range(0.5, 0.75)) # exibir arma
+			$reload.start(rand_range(2, 2.5)) # atirar
+			$reload_weapon.start(rand_range(0.75, 1.0)) # exibir arma
 #			$reload.start(40)
 #			$reload_weapon.start(40)
 		if body_ != null:
@@ -81,8 +81,10 @@ func _on_reload_weapon_timeout():
 	$spear.show()
 	
 func on_area_hitted():
+	$hurt.play()
 	pass
 
 func on_area_destroid():
+	$death.play()
 	autodestroy()
 	pass

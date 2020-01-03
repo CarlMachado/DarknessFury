@@ -168,6 +168,7 @@ func take_spear():
 	get_tree().call_group("spear", "spear_true")
 	if not has_spear:
 #		$anim_sprite.play("take_weapon")
+		$take.play()
 		has_spear = true
 	GAME.reload(loaded, has_spear)
 
@@ -177,7 +178,7 @@ func _on_reload_timeout():
 	GAME.reload(loaded, has_spear)
 	
 func on_area_hitted():
-	$hurt.play()
+	$hurt.play(.29)
 	life_state += 1
 	get_tree().call_group("life_HUD", "change_state", life_state)
 	$particles_hit.emitting = true

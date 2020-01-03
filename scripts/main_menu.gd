@@ -13,6 +13,8 @@ func _ready():
 func _process(delta):
 	if tutorial:
 		$menu_content/tutorial_content.show()
+		$menu_content/change.stop()
+		$menu_content/select.stop()
 	else:
 		$menu_content/tutorial_content.hide()
 	

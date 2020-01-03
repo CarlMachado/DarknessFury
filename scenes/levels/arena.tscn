@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/arena.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/mouse_cross.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://sprites/weapon/spear_floor.png" type="Texture" id=18]
 [ext_resource path="res://fonts/kills.tres" type="DynamicFont" id=19]
 [ext_resource path="res://fonts/press_start.tres" type="DynamicFont" id=20]
+[ext_resource path="res://sounds/arena_battle_intimidation.wav" type="AudioStream" id=21]
+[ext_resource path="res://sounds/menu/change.wav" type="AudioStream" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.5568, 0.860004 )
@@ -232,6 +234,7 @@ position = Vector2( 334.376, 14.361 )
 shape = SubResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
+editor/display_folded = true
 script = SubResource( 6 )
 
 [node name="life" parent="HUD" instance=ExtResource( 15 )]
@@ -297,4 +300,12 @@ __meta__ = {
 
 [node name="anim_restart" type="AnimationPlayer" parent="HUD"]
 anims/restart = SubResource( 9 )
+
+[node name="intimidation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -25.0
+
+[node name="next" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = -15.0
 [connection signal="body_entered" from="walls_area_enemy" to="enemy_spawns/spawn_enemy0" method="_on_walls_area_body_entered"]

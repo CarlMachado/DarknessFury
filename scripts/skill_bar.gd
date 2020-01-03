@@ -5,6 +5,7 @@ func _ready():
 	pass
 
 func active():
+	$start.play()
 	self.show()
 	
 func desactive():
