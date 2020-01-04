@@ -97,9 +97,8 @@ func _on_reload_weapon_timeout():
 	
 func on_area_hitted():
 	$hurt.play()
-	pass
+	$particles_hit.emitting = true
 
 func on_area_destroid():
 	$death.play()
 	autodestroy()
-	pass

@@ -11,10 +11,12 @@ var start_dead = false
 var action_answer # alvo verde - 1 / alvo vermelho - 0
 var life_state = 1
 
+#var checkpoint_boss = false
+
 enum {ATTACK, SKILL}
 var atk_status = ATTACK
 
-enum {PLAYING, DEAD, BOSS, RESTART}
+enum {PLAYING, DEAD, BOSS, RESTART, WIN}
 var status = PLAYING
 
 func _ready():
@@ -32,6 +34,18 @@ func _physics_process(delta):
 		dead()
 	elif status == BOSS:
 		boss()
+	elif status == WIN:
+		win()
+
+func win():
+	get_tree().call_group("skill_bar", "destroy")
+	$anim_sprite.play("idle")
+	$particles_floor.emitting = false
+	if $walking.playing:
+		$walking.stop()
+		
+	if Input.is_action_pressed("ui_leave"):
+		get_tree().call_group("Menu", "_on_btn_sair_pressed")
 
 func boss():
 	get_tree().call_group("skill_bar", "destroy")
@@ -78,12 +92,19 @@ func playing():
 		skill()
 		atk_status = ATTACK
 	
-	if status != BOSS and not finish_dialog_boss:
+	if status != BOSS and not finish_dialog_boss:# and !checkpoint_boss:
 #		print(get_tree().get_nodes_in_group("enemy").size())
 #		print(GAME.enemys_spawn)
 #		print(GAME.KILLS_STOP_SPAWN)
 		if get_tree().get_nodes_in_group("enemy").size() <= 0 and GAME.enemys_spawn >= GAME.KILLS_STOP_SPAWN:
 			status = BOSS
+			$area_hit.health = 30
+			life_state = 1
+			get_tree().call_group("life_HUD", "start_sprites")
+#			checkpoint_boss = true
+
+	if GAME.win:
+		status = WIN
 	
 	if has_spear:
 		$spear_hand.show()
@@ -115,6 +136,9 @@ func dead():
 		start_dead = true
 	
 	if Input.is_action_pressed("ui_accept"):
+#		if checkpoint_boss:
+#			pass
+#		else:
 		restart()
 
 func restart():

@@ -40,8 +40,9 @@ func _physics_process(delta):
 			get_parent().add_child(spear_attack)
 			$spear.hide()
 			loaded = false
-			$reload.start(rand_range(2, 2.5)) # atirar
-			$reload_weapon.start(rand_range(0.75, 1.0)) # exibir arma
+			var timer_reload = rand_range(1.5, 2.25)
+			$reload.start(timer_reload) # atirar
+			$reload_weapon.start(rand_range(timer_reload - 1.5, timer_reload - 0.75)) # exibir arma
 #			$reload.start(40)
 #			$reload_weapon.start(40)
 		if body_ != null:
@@ -59,9 +60,11 @@ func autodestroy():
 	$reload_weapon.queue_free()
 	$anim_sprite.queue_free()
 	$spear.queue_free()
-#	$particles_dead.emitting = true
+	$particles_dead.emitting = true
 #	$anim.play("dead")
 #	yield($anim, "animation_finished")
+	GAME.win()
+	yield(get_tree().create_timer(2), "timeout")
 	queue_free()
 
 func boss_self():
@@ -82,9 +85,8 @@ func _on_reload_weapon_timeout():
 	
 func on_area_hitted():
 	$hurt.play()
-	pass
+	$particles_hit.emitting = true
 
 func on_area_destroid():
 	$death.play()
 	autodestroy()
-	pass

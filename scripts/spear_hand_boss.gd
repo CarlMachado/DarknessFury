@@ -6,7 +6,7 @@ const DEATH_ZONE_ACELL = 30
 const DEATH_ZONE_ANGLE = .01
 
 var dir = Vector2()
-var vel_init = 1000
+var vel_init = 850
 var acell = vel_init
 var damage = 10
 var type = ""

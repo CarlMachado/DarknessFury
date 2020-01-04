@@ -52,7 +52,6 @@ stream = ExtResource( 4 )
 volume_db = -15.0
 
 [node name="margin_container" type="MarginContainer" parent="menu_content"]
-editor/display_folded = true
 margin_right = 640.0
 margin_bottom = 352.0
 rect_scale = Vector2( 2, 2 )

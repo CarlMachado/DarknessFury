@@ -22,28 +22,33 @@ func _process(delta):
 		tutorial = false
 
 func _on_jogar_pressed():
-	if game != null:
-		game.queue_free()
-		game = pre_restart.instance()
-	else:
-		$menu_content/select.play()
-		$menu_content.hide()
-		game = pre_game.instance()
-	get_parent().add_child(game)
+	if !tutorial:
+		if game != null:
+			game.queue_free()
+			game = pre_restart.instance()
+		else:
+			$menu_content/select.play()
+			$menu_content.hide()
+			game = pre_game.instance()
+		get_parent().add_child(game)
 
 func _on_btn_opes_pressed():
 	tutorial = true
 
 func _on_btn_sair_pressed():
-	$menu_content/select.play()
-	yield(get_tree().create_timer(0.3), "timeout")
-	get_tree().quit()
+	if !tutorial:
+		$menu_content/select.play()
+		yield(get_tree().create_timer(0.3), "timeout")
+		get_tree().quit()
 
 func _on_btn_jogar_mouse_entered():
-	$menu_content/change.play()
+	if !tutorial:
+		$menu_content/change.play()
 
 func _on_btn_opes_mouse_entered():
-	$menu_content/change.play()
+	if !tutorial:
+		$menu_content/change.play()
 
 func _on_btn_sair_mouse_entered():
-	$menu_content/change.play()
+	if !tutorial:
+		$menu_content/change.play()
