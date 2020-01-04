@@ -59,10 +59,13 @@ func write_kill():
 	$kills.text = \"KILLS: \" + str(GAME.kills)
 
 func on_win():
+	$restart.hide()
+	$anim.stop(\"restart\")
 	$anim.play(\"win\")
 
 func restart():
-	$anim.play(\"restart\")
+	if !GAME.win:
+		$anim.play(\"restart\")
 
 func on_reload(loaded, has_spear):
 	if loaded and has_spear:
@@ -363,6 +366,7 @@ __meta__ = {
 }
 
 [node name="win" type="Label" parent="HUD"]
+visible = false
 modulate = Color( 0, 0, 0, 0.882353 )
 margin_left = 341.926
 margin_top = 222.019
@@ -379,6 +383,7 @@ __meta__ = {
 }
 
 [node name="creditos" type="Label" parent="HUD"]
+visible = false
 modulate = Color( 0, 0, 0, 0.882353 )
 margin_left = 256.0
 margin_top = 587.0
