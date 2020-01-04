@@ -48,8 +48,8 @@ func _physics_process(delta):
 				get_parent().add_child(spear_attack)
 				$spear.hide()
 				loaded = false
-				$reload.start(rand_range(3.0, 3.75))
-				$reload_weapon.start(rand_range(2.25, 3.00))
+				$reload.start(rand_range(5.0, 6.75))
+				$reload_weapon.start(rand_range(3.25, 4.00))
 #				$reload.start(40)
 #				$reload_weapon.start(40)
 		if body_ != null:

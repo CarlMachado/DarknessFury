@@ -47,7 +47,7 @@ func _ready():
 	GAME.connect(\"kills_changed\", self, \"on_kills_changed\") # warning-ignore:return_value_discarded
 	GAME.connect(\"reload\", self, \"on_reload\") # warning-ignore:return_value_discarded
 	GAME.connect(\"unload\", self, \"on_unload\") # warning-ignore:return_value_discarded
-	GAME.connect(\"restart\", self, \"restart\")
+	GAME.connect(\"restart\", self, \"restart\") # warning-ignore:return_value_discarded
 	GAME.connect(\"win\", self, \"on_win\")
 	$restart.hide()
 	write_kill()
