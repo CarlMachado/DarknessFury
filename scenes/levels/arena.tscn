@@ -60,7 +60,7 @@ func write_kill():
 
 func on_win():
 	$restart.hide()
-	$anim.stop(\"restart\")
+#	$anim.stop(\"restart\")
 	$anim.play(\"win\")
 
 func restart():
@@ -79,12 +79,11 @@ func on_unload():
 	$spear_hide.hide()
 	$spear_floor.hide()"
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 55
 font_data = ExtResource( 21 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "restart"
+[sub_resource type="Animation" id=8]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -351,19 +350,15 @@ __meta__ = {
 }
 
 [node name="restart" type="Label" parent="HUD"]
-visible = false
 modulate = Color( 0, 0, 0, 0.882353 )
-margin_left = 306.926
-margin_top = 268.019
-margin_right = 976.926
-margin_bottom = 350.019
+margin_left = 474.0
+margin_top = 285.0
+margin_right = 806.0
+margin_bottom = 372.0
 custom_fonts/font = ExtResource( 20 )
 text = "PRESS ENTER TO RESTART
 "
 uppercase = true
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="win" type="Label" parent="HUD"]
 visible = false
@@ -389,7 +384,7 @@ margin_left = 256.0
 margin_top = 587.0
 margin_right = 1014.0
 margin_bottom = 642.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "DESENVOLVIDO POR: HERIKC BRECHER E CARLOS MACHADO"
 __meta__ = {
@@ -397,7 +392,7 @@ __meta__ = {
 }
 
 [node name="anim" type="AnimationPlayer" parent="HUD"]
-anims/restart = SubResource( 7 )
+anims/restart = SubResource( 8 )
 anims/win = SubResource( 9 )
 
 [node name="intimidation" type="AudioStreamPlayer" parent="."]
