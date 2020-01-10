@@ -1,31 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/life.gd" type="Script" id=1]
-[ext_resource path="res://sprites/hero_face.png" type="Texture" id=2]
+[ext_resource path="res://sprites/heart_3.png" type="Texture" id=2]
+[ext_resource path="res://sprites/heart_2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/heart_1.png" type="Texture" id=4]
 
 [node name="life" type="Node2D" groups=[
 "life_HUD",
 ]]
 z_index = 2000
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="sprite_state1" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="sprite_state2" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.686275 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="sprite_state3" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.490196 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
 [node name="sprite_state4" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.294118 )
-texture = ExtResource( 2 )

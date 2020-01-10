@@ -5,6 +5,6 @@ antialiased = false
 font_path = "res://fonts/pixelfont.ttf"
 
 [resource]
-size = 60
+size = 70
 extra_spacing_top = -15
 font_data = SubResource( 1 )

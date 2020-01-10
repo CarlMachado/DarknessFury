@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/arena.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/mouse_cross.tscn" type="PackedScene" id=2]
@@ -16,13 +16,12 @@
 [ext_resource path="res://prefabs/spawn_enemy.tscn" type="PackedScene" id=14]
 [ext_resource path="res://prefabs/life.tscn" type="PackedScene" id=15]
 [ext_resource path="res://prefabs/skill_bar.tscn" type="PackedScene" id=16]
-[ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=17]
-[ext_resource path="res://sprites/weapon/spear_floor.png" type="Texture" id=18]
-[ext_resource path="res://fonts/kills.tres" type="DynamicFont" id=19]
-[ext_resource path="res://fonts/press_start.tres" type="DynamicFont" id=20]
-[ext_resource path="res://fonts/pixelfont.ttf" type="DynamicFontData" id=21]
-[ext_resource path="res://sounds/arena_battle_intimidation.wav" type="AudioStream" id=22]
-[ext_resource path="res://sounds/menu/change.wav" type="AudioStream" id=23]
+[ext_resource path="res://fonts/kills.tres" type="DynamicFont" id=17]
+[ext_resource path="res://fonts/press_start.tres" type="DynamicFont" id=18]
+[ext_resource path="res://sprites/main_menu/tutorial.png" type="Texture" id=19]
+[ext_resource path="res://fonts/pixelfont.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://sounds/arena_battle_intimidation.wav" type="AudioStream" id=21]
+[ext_resource path="res://sounds/menu/change.wav" type="AudioStream" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.5568, 0.860004 )
@@ -56,32 +55,36 @@ func on_kills_changed():
 	write_kill()
 
 func write_kill():
-	$kills.text = \"KILLS: \" + str(GAME.kills)
+	#$kills.text = \"MORTES: \" + str(GAME.kills)
+	pass
 
 func on_win():
 	$restart.hide()
 #	$anim.stop(\"restart\")
-	$anim.play(\"win\")
+	#$anim.play(\"win\")
+	$win_background.show()
+	$win.show()
+	$creditos.show()
 
 func restart():
 	if !GAME.win:
 		$anim.play(\"restart\")
 
-func on_reload(loaded, has_spear):
-	if loaded and has_spear:
-		$spear_floor.hide()
-		$spear_hide.show()
-	elif has_spear:
-		$spear_hide.hide()
-		$spear_floor.show()
+#func on_reload(loaded, has_spear):
+#	if loaded and has_spear:
+#		$spear_floor.hide()
+#		$spear_hide.show()
+#	elif has_spear:
+#		$spear_hide.hide()
+#		$spear_floor.show()
 	
-func on_unload():
-	$spear_hide.hide()
-	$spear_floor.hide()"
+#func on_unload():
+#	$spear_hide.hide()
+#	$spear_floor.hide()"
 
 [sub_resource type="DynamicFont" id=7]
 size = 55
-font_data = ExtResource( 21 )
+font_data = ExtResource( 20 )
 
 [sub_resource type="Animation" id=8]
 length = 0.8
@@ -207,7 +210,7 @@ texture = ExtResource( 7 )
 centered = false
 
 [node name="boss" parent="anim_boss" instance=ExtResource( 8 )]
-position = Vector2( 322.77, -34.8633 )
+position = Vector2( 323.245, -34.3883 )
 rotation = 1.57079
 
 [node name="arena_entrance" type="Node2D" parent="anim_boss"]
@@ -304,7 +307,9 @@ shape = SubResource( 5 )
 script = SubResource( 6 )
 
 [node name="life" parent="HUD" instance=ExtResource( 15 )]
-position = Vector2( 113.1, 115.392 )
+position = Vector2( 172.264, 101.358 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 0
 
 [node name="skill_bar" parent="HUD" instance=ExtResource( 16 )]
 visible = false
@@ -312,37 +317,15 @@ position = Vector2( 635.372, 504.687 )
 scale = Vector2( 2, 2 )
 z_index = 1001
 
-[node name="spear_hide" type="Sprite" parent="HUD"]
-visible = false
-modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( 158.186, 115.392 )
-rotation = -1.5708
-scale = Vector2( 2.5, 2 )
-texture = ExtResource( 17 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="spear_floor" type="Sprite" parent="HUD"]
-visible = false
-modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( 84.2025, 121.7 )
-rotation = -1.5708
-scale = Vector2( 2.5, 2 )
-texture = ExtResource( 18 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="kills" type="Label" parent="HUD"]
+visible = false
 modulate = Color( 0, 0, 0, 0.784314 )
-margin_left = 1015.88
-margin_top = 72.3789
-margin_right = 1153.88
-margin_bottom = 324.379
-custom_fonts/font = ExtResource( 19 )
-custom_colors/font_color = Color( 0.113725, 0.113725, 0.113725, 0.882353 )
-text = "KILLS:
+margin_left = 977.178
+margin_top = 66.8421
+margin_right = 1135.18
+margin_bottom = 318.842
+custom_fonts/font = ExtResource( 17 )
+text = "MORTES:
 
 "
 __meta__ = {
@@ -350,56 +333,57 @@ __meta__ = {
 }
 
 [node name="restart" type="Label" parent="HUD"]
-modulate = Color( 0, 0, 0, 0.882353 )
+modulate = Color( 0, 0, 0, 0.637998 )
 margin_left = 474.0
 margin_top = 285.0
 margin_right = 806.0
 margin_bottom = 372.0
-custom_fonts/font = ExtResource( 20 )
+custom_fonts/font = ExtResource( 18 )
 text = "PRESS ENTER TO RESTART
 "
 uppercase = true
 
+[node name="win_background" type="Sprite" parent="HUD"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 19 )
+centered = false
+
 [node name="win" type="Label" parent="HUD"]
 visible = false
-modulate = Color( 0, 0, 0, 0.882353 )
-margin_left = 341.926
-margin_top = 222.019
-margin_right = 1011.93
-margin_bottom = 399.019
-custom_fonts/font = ExtResource( 20 )
+margin_left = 290.375
+margin_top = 203.403
+margin_right = 960.379
+margin_bottom = 380.403
+custom_fonts/font = ExtResource( 18 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "O nobre rei Lathas tentou derrotar
 o poderoso vilão, mas sem sucesso. 
 Agora o reino de Varrock sucumbirá 
 a toda a fúria de Elvarth."
+align = 1
+valign = 1
 uppercase = true
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="creditos" type="Label" parent="HUD"]
 visible = false
-modulate = Color( 0, 0, 0, 0.882353 )
-margin_left = 256.0
-margin_top = 587.0
-margin_right = 1014.0
-margin_bottom = 642.0
+margin_left = 257.432
+margin_top = 628.527
+margin_right = 1015.43
+margin_bottom = 683.527
 custom_fonts/font = SubResource( 7 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "DESENVOLVIDO POR: HERIKC BRECHER E CARLOS MACHADO"
-__meta__ = {
-"_edit_lock_": true
-}
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "DESENVOLVIDO POR: CARLOS MACHADO E HERIKC BRECHER"
 
 [node name="anim" type="AnimationPlayer" parent="HUD"]
 anims/restart = SubResource( 8 )
 anims/win = SubResource( 9 )
 
 [node name="intimidation" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 22 )
+stream = ExtResource( 21 )
 volume_db = -25.0
 
 [node name="next" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 23 )
+stream = ExtResource( 22 )
 volume_db = -15.0
 [connection signal="body_entered" from="walls_area_enemy" to="enemy_spawns/spawn_enemy0" method="_on_walls_area_body_entered"]

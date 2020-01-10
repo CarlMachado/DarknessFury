@@ -106,6 +106,11 @@ func _process(delta):
 			elif Input.is_action_just_pressed("ui_accept") and dialog == 8:
 				$next.play()
 				$anim_boss/dialogues/speak_ballon_9.hide()
+				$anim_boss/dialogues/speak_ballon_10.show()
+				dialog += 1
+			elif Input.is_action_just_pressed("ui_accept") and dialog == 9:
+				$next.play()
+				$anim_boss/dialogues/speak_ballon_10.hide()
 				boss = false
 				stage = -1
 				get_tree().call_group("player", "set_status_playing")

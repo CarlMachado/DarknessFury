@@ -2,13 +2,13 @@
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/walk_0.png" type="Texture" id=2]
-[ext_resource path="res://sprites/player/raise_2.png" type="Texture" id=3]
-[ext_resource path="res://sprites/player/raise_1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/player/raise_0.png" type="Texture" id=5]
-[ext_resource path="res://sprites/player/walk_1.png" type="Texture" id=6]
-[ext_resource path="res://sprites/player/walk_2.png" type="Texture" id=7]
-[ext_resource path="res://sprites/player/walk_3.png" type="Texture" id=8]
-[ext_resource path="res://sprites/player/raise_3.png" type="Texture" id=9]
+[ext_resource path="res://sprites/player/walk_1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/player/walk_2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/player/walk_3.png" type="Texture" id=5]
+[ext_resource path="res://sprites/player/raise_3.png" type="Texture" id=6]
+[ext_resource path="res://sprites/player/raise_2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/player/raise_1.png" type="Texture" id=8]
+[ext_resource path="res://sprites/player/raise_0.png" type="Texture" id=9]
 [ext_resource path="res://sprites/weapon/spear_hand.png" type="Texture" id=10]
 [ext_resource path="res://scripts/hit.gd" type="Script" id=11]
 [ext_resource path="res://prefabs/entity_dead.tres" type="Material" id=12]
@@ -26,24 +26,24 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "dead",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "rise",
-"speed": 2.0
-}, {
-"frames": [ null, ExtResource( 2 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"frames": [ null, ExtResource( 2 ), ExtResource( 6 ), ExtResource( 2 ) ],
 "loop": false,
 "name": "take_weapon",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "dead",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "rise",
+"speed": 2.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -65,7 +65,7 @@ flag_disable_z = true
 spread = 100.0
 gravity = Vector3( -80, -9.8, 0 )
 initial_velocity = 13.0
-angular_velocity = 2.76614e+029
+angular_velocity = 2.76614e+29
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 1.5

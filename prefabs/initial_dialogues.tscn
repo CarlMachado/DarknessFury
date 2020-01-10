@@ -18,7 +18,7 @@ margin_top = 217.0
 margin_right = 457.0
 margin_bottom = 313.0
 custom_fonts/font = ExtResource( 2 )
-text = "Ai minha cabeça!
+text = "Arg... Minha cabeça!
 Como doi!"
 valign = 1
 autowrap = true
@@ -48,8 +48,8 @@ margin_top = 217.0
 margin_right = 457.0
 margin_bottom = 313.0
 custom_fonts/font = ExtResource( 2 )
-text = "Onde eu estou, o que
-está acontecendo?"
+text = "Que lugar é esse? O que
+está acontecendo?!"
 valign = 1
 autowrap = true
 
@@ -78,7 +78,7 @@ margin_top = 217.0
 margin_right = 457.0
 margin_bottom = 313.0
 custom_fonts/font = ExtResource( 2 )
-text = "Ataqueemmm!!!"
+text = "*Ataqueemmm!!!*"
 align = 1
 valign = 1
 autowrap = true

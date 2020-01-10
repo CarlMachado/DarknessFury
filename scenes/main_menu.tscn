@@ -1,15 +1,19 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://sprites/main_menu/main_menu_background.png" type="Texture" id=2]
-[ext_resource path="res://sounds/menu/change.wav" type="AudioStream" id=3]
-[ext_resource path="res://sounds/menu/select.wav" type="AudioStream" id=4]
-[ext_resource path="res://fonts/game_title.tres" type="DynamicFont" id=5]
-[ext_resource path="res://fonts/button_menu_hover.tres" type="StyleBox" id=6]
-[ext_resource path="res://fonts/button_menu_normal.tres" type="StyleBox" id=7]
-[ext_resource path="res://fonts/pixel_font.tres" type="DynamicFont" id=8]
-[ext_resource path="res://sprites/main_menu/tutorial.png" type="Texture" id=9]
-[ext_resource path="res://fonts/main_menu_tutorial.tres" type="DynamicFont" id=10]
+[ext_resource path="res://sprites/main_menu/hero_art_alt.png" type="Texture" id=3]
+[ext_resource path="res://sounds/menu/change.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/menu/select.wav" type="AudioStream" id=5]
+[ext_resource path="res://fonts/game_title.tres" type="DynamicFont" id=6]
+[ext_resource path="res://fonts/button_menu_hover.tres" type="StyleBox" id=7]
+[ext_resource path="res://fonts/button_menu_normal.tres" type="StyleBox" id=8]
+[ext_resource path="res://fonts/pixel_font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://sprites/main_menu/tutorial.png" type="Texture" id=10]
+[ext_resource path="res://sprites/main_menu/wasd_pixel.png" type="Texture" id=11]
+[ext_resource path="res://sprites/main_menu/mouse_pixel.png" type="Texture" id=12]
+[ext_resource path="res://sprites/main_menu/skillbar.png" type="Texture" id=13]
+[ext_resource path="res://fonts/main_menu_tutorial.tres" type="DynamicFont" id=14]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -43,12 +47,17 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 centered = false
 
+[node name="hero_art_alt" type="Sprite" parent="menu_content"]
+position = Vector2( 989.793, 414.973 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+
 [node name="change" type="AudioStreamPlayer" parent="menu_content"]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
 volume_db = -15.0
 
 [node name="select" type="AudioStreamPlayer" parent="menu_content"]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 volume_db = -15.0
 
 [node name="margin_container" type="MarginContainer" parent="menu_content"]
@@ -64,95 +73,108 @@ custom_constants/margin_bottom = 40
 margin_left = 40.0
 margin_top = 40.0
 margin_right = 600.0
-margin_bottom = 312.0
+margin_bottom = 320.0
 custom_constants/separation = 0
 
 [node name="game_tittle" type="Label" parent="menu_content/margin_container/v_box_container"]
 margin_right = 560.0
-margin_bottom = 35.0
-custom_fonts/font = ExtResource( 5 )
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 6 )
 text = "Darkness Fury"
 
 [node name="margin_container" type="MarginContainer" parent="menu_content/margin_container/v_box_container"]
-margin_top = 35.0
+margin_top = 43.0
 margin_right = 560.0
-margin_bottom = 272.0
+margin_bottom = 275.0
 custom_constants/margin_right = 400
-custom_constants/margin_top = 130
+custom_constants/margin_top = 125
 
 [node name="v_box_container" type="VBoxContainer" parent="menu_content/margin_container/v_box_container/margin_container"]
-margin_top = 130.0
+margin_top = 125.0
 margin_right = 160.0
-margin_bottom = 237.0
+margin_bottom = 232.0
 custom_constants/separation = 10
 
 [node name="btn_jogar" type="Button" parent="menu_content/margin_container/v_box_container/margin_container/v_box_container"]
 margin_right = 160.0
 margin_bottom = 29.0
-custom_styles/hover = ExtResource( 6 )
+custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = SubResource( 1 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = ExtResource( 7 )
-custom_fonts/font = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 text = "Jogar"
 
 [node name="btn_opções" type="Button" parent="menu_content/margin_container/v_box_container/margin_container/v_box_container"]
 margin_top = 39.0
 margin_right = 160.0
 margin_bottom = 68.0
-custom_styles/hover = ExtResource( 6 )
+custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/focus = SubResource( 5 )
 custom_styles/disabled = SubResource( 6 )
-custom_styles/normal = ExtResource( 7 )
-custom_fonts/font = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 text = "Tutorial"
 
 [node name="btn_sair" type="Button" parent="menu_content/margin_container/v_box_container/margin_container/v_box_container"]
 margin_top = 78.0
 margin_right = 160.0
 margin_bottom = 107.0
-custom_styles/hover = ExtResource( 6 )
+custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/disabled = SubResource( 9 )
-custom_styles/normal = ExtResource( 7 )
-custom_fonts/font = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 text = "Sair"
 
 [node name="tutorial_content" type="Node2D" parent="menu_content"]
-editor/display_folded = true
-visible = false
 
 [node name="tutorial" type="Sprite" parent="menu_content/tutorial_content"]
 scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 centered = false
 
+[node name="wasd_pixel" type="Sprite" parent="menu_content/tutorial_content"]
+position = Vector2( 188.003, 207.76 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 11 )
+
+[node name="mouse_pixel" type="Sprite" parent="menu_content/tutorial_content"]
+position = Vector2( 1134.82, 358.761 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 12 )
+
+[node name="skillbar" type="Sprite" parent="menu_content/tutorial_content"]
+position = Vector2( 197.526, 556.016 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 13 )
+
 [node name="wasd" type="Label" parent="menu_content/tutorial_content"]
-margin_left = 333.577
-margin_top = 121.301
-margin_right = 1007.58
-margin_bottom = 171.301
-custom_fonts/font = ExtResource( 10 )
+margin_left = 324.054
+margin_top = 138.986
+margin_right = 998.057
+margin_bottom = 188.986
+custom_fonts/font = ExtResource( 14 )
 text = "Use as teclas W A S D para movimentar-se."
 
 [node name="mouse" type="Label" parent="menu_content/tutorial_content"]
-margin_left = 679.984
-margin_top = 284.59
-margin_right = 1353.98
-margin_bottom = 334.59
-custom_fonts/font = ExtResource( 10 )
+margin_left = 750.443
+margin_top = 339.91
+margin_right = 1053.44
+margin_bottom = 389.91
+custom_fonts/font = ExtResource( 14 )
 text = "Use M2 para atirar."
 
 [node name="space" type="Label" parent="menu_content/tutorial_content"]
-margin_left = 273.865
-margin_top = 497.607
-margin_right = 947.865
-margin_bottom = 653.607
-custom_fonts/font = ExtResource( 10 )
-text = "Use a tecla espaço para acertar o tiro
+margin_left = 339.828
+margin_top = 499.477
+margin_right = 1065.83
+margin_bottom = 655.477
+custom_fonts/font = ExtResource( 14 )
+text = "Use a tecla M2 novamente para acertar o tiro
 quando a skillbar estiver no meio.
 "
 
@@ -161,16 +183,9 @@ margin_left = 1210.01
 margin_top = 2.83809
 margin_right = 1884.01
 margin_bottom = 158.838
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 14 )
 text = "ESC
 "
-
-[node name="ColorRect" type="ColorRect" parent="menu_content/tutorial_content"]
-margin_left = 1048.01
-margin_top = 559.73
-margin_right = 1054.01
-margin_bottom = 613.73
-color = Color( 0, 0, 0, 1 )
 [connection signal="mouse_entered" from="menu_content/margin_container/v_box_container/margin_container/v_box_container/btn_jogar" to="." method="_on_btn_jogar_mouse_entered"]
 [connection signal="pressed" from="menu_content/margin_container/v_box_container/margin_container/v_box_container/btn_jogar" to="." method="_on_jogar_pressed"]
 [connection signal="mouse_entered" from="menu_content/margin_container/v_box_container/margin_container/v_box_container/btn_opções" to="." method="_on_btn_opes_mouse_entered"]

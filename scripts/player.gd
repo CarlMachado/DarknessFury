@@ -85,10 +85,10 @@ func playing():
 		if not $walking.playing:
 			$walking.play(0)
 	
-	if Input.is_action_just_pressed("ui_attack"):# and atk_status == ATTACK:
+	if Input.is_action_just_pressed("ui_attack") and atk_status == ATTACK:
 		init_shoot_spear()
 		atk_status = SKILL
-	elif Input.is_action_just_pressed("ui_skill"):# and atk_status == SKILL: 
+	elif Input.is_action_just_pressed("ui_attack") and atk_status == SKILL: 
 		skill()
 		atk_status = ATTACK
 	
